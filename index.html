@@ -60,51 +60,68 @@
     }
    
     window.window['Func_Run01a'] = function Run01a(x1,x3,x5){
-    	  //var result = document.getElementById("json-result");
-          const Http = new XMLHttpRequest();
-          function getLocation() {
-              console.log("getLocation Called");
-              var bdcApi = "https://api.bigdatacloud.net/data/reverse-geocode-client"
+    	function handlePermission() {
+          navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+            if (result.state === 'granted') {
+              //alert(result.state);
+              getVitri();
+            } else if (result.state === 'prompt') {
+              //alert(result.state);
 
-              navigator.geolocation.getCurrentPosition(
-                  (position) => {
-                      bdcApi = bdcApi
+            } else if (result.state === 'denied') {
+              //alert(result.state);
+            }
+            result.addEventListener('change', () => {
+              //alert(result.state);
+            });
+          });
+        }
+        
+        function getVitri(){
+        	const Http = new XMLHttpRequest();
+            function getLocation() {
+            	var bdcApi = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+                  navigator.geolocation.getCurrentPosition(
+            (position) => {
                           + "?latitude=" + position.coords.latitude
                           + "&longitude=" + position.coords.longitude
                           + "&localityLanguage=en";
                       getApi(bdcApi);
 
-                  },
-                  (err) => { getApi(bdcApi); },
-                  {
-                      enableHighAccuracy: true,
-                      timeout: 5000,
-                      maximumAge: 0
-                  });
-          }
-          function getApi(bdcApi) {
+                      },
+                      (err) => { getApi(bdcApi); },
+                      {
+                          enableHighAccuracy: true,
+                          timeout: 5000,
+                          maximumAge: 0
+                      });
+              }
+              function getApi(bdcApi) {
 
-              Http.open("GET", bdcApi);
-              Http.send();
-              Http.onreadystatechange = function () {
-                  if (this.readyState == 4 && this.status == 200) {
-                      //result.innerHTML = this.responseText;
-                      window['Toado'] = this.responseText;
-                      window[x3](x1);
-                      //return "done!";
-                  } 
-                  
-              };
-          }
-          
-          getLocation();
+				 Http.open("GET", bdcApi);
+                  Http.send();
+                  Http.onreadystatechange = function () {
+                      if (this.readyState == 4 && this.status == 200) { 
+                          window[x1] = this.responseText;
+                          window[x3](x1);
+                      } 
+
+                  };
+                 
+              }
+
+              getLocation();
+              
+        }
+        
+        handlePermission();         
     }
 
-    window.window['Func_Run01b'] = function Run01b(exp){
-    	if (window[exp] == '') {
+    window.window['Func_Run01b'] = function Run01b(x1){
+    	if (window[x1] == '') {
         	alert('error');
         }else {
-        	alert(window[exp]);
+        	alert(window[x1]);
         }
     }
     
