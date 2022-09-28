@@ -1,121 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
+
 <body>
-
-
-<script>
-	function Q0001(exp) {
-      var arr = exp.split("]TTT[");
-      var x0 = arr[0].trim();
-      var x1 = arr[1].trim();
-      var x2 = arr[2].trim();
-      var x3 = arr[3].trim();
-      var x4 = arr[4].trim();
-      var x5 = arr[5].trim();
-
-      async function RunFirst() {
-        let promise = new Promise((resolve, reject) => {
-          setTimeout(function(){
-            if (x0=='get') {
-              var url = (x2=='NoLink') ? GetLink() : x2;
-              Quang(resolve, url);
-            } else {
-              RunOther(resolve);
-            }
-          },5);
-        });
-        let result = await promise;
-        if (result=="done!") { window[x3](x1); }
-      }
-
-      function Quang(resolve, url) {
-        window.window[x1];
-        $.getJSON(url, function (json) {
-          window[x1] = json.records.map(doc => Object.values(doc));
-          window[x1].map(function mapper(s) {
-            if (Array.isArray(s)) {
-              return s.map(mapper);
-            } else {
-              return s.toString().trim();
-            }
-          });
-          resolve("done!");
-        });
-      }
-      
-      function RunOther(resolve) {
-      	window.window['Toado'] = '';
-		window[x4](x1,x3,x5);  
-      }
-      
-      RunFirst();
-    }
+    <p>Click the button to get Location.</p>
+      <p>Try with and without providing a permission to access your location. </p>
+    <button type="button" onclick="getLocation()">Share my Location</button>
+    <pre id="json-result"></pre>
     
-    function test(){
-    	var exp = 'RunOther ]TTT[ Toado ]TTT[ NoLink ]TTT[ Func_Run01b ]TTT[ Func_Run01a ]TTT[ NoExp';
-        Q0001(exp);
-    }
-   
-    window.window['Func_Run01a'] = function Run01a(x1,x3){
-    	  function functABC() {
-            return new Promise(function(resolve, reject) {
+    <script>
+    	var result = document.getElementById("json-result");
+    const Http = new XMLHttpRequest();
+    function getLocation() {
+        console.log("getLocation Called");
+        var bdcApi = "https://api.bigdatacloud.net/data/reverse-geocode-client"
 
-              $.ajax({
-                url: "https://geolocation-db.com/jsonp",
-                //url: "http://ipinfo.io",
-                jsonpCallback: "callback",
-                dataType: "jsonp",
-                //async: false,
-                success: function(location) { 
-                  window[x1] = location;
-                  resolve("done!")
-                },
-                error: function(err) {
-                  reject(err) 
-                }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                bdcApi = bdcApi
+                    + "?latitude=" + position.coords.latitude
+                    + "&longitude=" + position.coords.longitude
+                    + "&localityLanguage=en";
+                getApi(bdcApi);
 
-              });
-
-          
-              /*
-              $.get("http://ipinfo.io", function (response) {
-    //$("#ip").html("IP: " + response.ip);
-    //$("#address").html("Location: " + response.city + ", " + response.region);
-    //$("#details").html(JSON.stringify(response, null, 4));
-    window[x1] = response;
-    resolve("done!")
-}, "jsonp");
-*/
-              
-
-
-              
-              
-              
+            },
+            (err) => { getApi(bdcApi); },
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
             });
-          }
-
-          functABC().then(function(data) {
-            window[x3](x1)
-          }).catch(function(err) {
-            alert(err)
-          })
+    }
+    function getApi(bdcApi) {
+        Http.open("GET", bdcApi);
+        Http.send();
+        Http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                result.innerHTML = this.responseText;
+            }
+        };
     }
 
-    window.window['Func_Run01b'] = function Run01b(exp){
-    	if (window[exp] == '') {
-        	alert('error');
-        }else {
-        	alert(window[exp].city);
-
-        }
-    }
-    
-    test();
-</script>
-
+    </script>
 </body>
 </html>
