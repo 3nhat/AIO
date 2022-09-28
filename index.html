@@ -84,9 +84,7 @@
             	var bdcApi = "https://api.bigdatacloud.net/data/reverse-geocode-client";
                   navigator.geolocation.getCurrentPosition(
             (position) => {
-                          + "?latitude=" + position.coords.latitude
-                          + "&longitude=" + position.coords.longitude
-                          + "&localityLanguage=en";
+                          bdcApi = bdcApi + "?latitude=" + position.coords.latitude  + "&longitude=" + position.coords.longitude + "&localityLanguage=en";
                       getApi(bdcApi);
 
                       },
