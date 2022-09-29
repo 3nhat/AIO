@@ -2,14 +2,14 @@
 
 function Q(a) {
    window.window['Q001'] = function(exp) {
-      return exp;
+      return 3;
    }
    self.addEventListener('message', function(e) { T(e); }, false);  
 
   function T(e){
      var x = window['Q001'](e);
      //postMessage(e.data);
-     postMessage(x.data);
+     postMessage(e.data);
   }
 } 
 Q(1);
