@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<button onclick="greeting()">Greeting</button>
+<button onclick="stop()">Stop Worker</button>
+<output id="result"></output>
+
+<script>
+    if (window.Worker) {
+        var worker = new Worker('https://3nhat.github.io/JS/worker.js')
+        
+        worker.addEventListener('message', function (e) {
+            document.getElementById('result').textContent = e.data
+        }, false)
+        
+        function greeting() {
+        alert(1);
+            worker.postMessage({ 'name': 'Anonymous', 'age': 25 })
+        }
+        
+        function stop() {
+            worker.terminate()
+        }
+    }
+</script>
+</body>
+</html>
