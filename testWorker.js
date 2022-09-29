@@ -1,7 +1,7 @@
 //self.addEventListener('message', function(e) { postMessage(e.data); }, false);
 
 function Q001(exp) {
-      return 3;
+      return exp;
 }
 
 function Q(a) {
@@ -9,9 +9,9 @@ function Q(a) {
   self.addEventListener('message', function(e) { T(e); }, false);  
 
   function T(e){
-     //var x = window['Q001'](e);
+     var x = window['Q001'](e);
      //postMessage(e.data);
-     postMessage(e.data);
+     postMessage(x.data);
   }
 } 
 Q(1);
