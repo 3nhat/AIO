@@ -1,10 +1,12 @@
 //self.addEventListener('message', function(e) { postMessage(e.data); }, false);
 
-function Q(a) {
-   window.window['Q001'] = function(exp) {
+window.window['Q001'] = function(exp) {
       return 3;
-   }
-   self.addEventListener('message', function(e) { T(e); }, false);  
+}
+
+function Q(a) {
+   
+  self.addEventListener('message', function(e) { T(e); }, false);  
 
   function T(e){
      var x = window['Q001'](e);
