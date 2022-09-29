@@ -9,7 +9,7 @@ function Q(a) {
   self.addEventListener('message', function(e) { T(e); }, false);  
 
   function T(e){
-     var x = window['Q001'](e);
+     //var x = window['Q001'](e);
      //postMessage(e.data);
      postMessage(e.data);
   }
