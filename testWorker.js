@@ -1,6 +1,6 @@
 //self.addEventListener('message', function(e) { postMessage(e.data); }, false);
 
-window.window['Q001'] = function(exp) {
+window.window['Func_Q001'] = function Q001(exp) {
       return 3;
 }
 
