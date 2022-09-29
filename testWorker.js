@@ -56,7 +56,7 @@ function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); 
 
 //loadFakeDOMforJQuery();
 //importScripts("/jquery-1.10.2.min.js");
-//importScripts("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js");
+importScripts("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js");
 
 Q(1);
 
