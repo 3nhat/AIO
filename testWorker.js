@@ -8,7 +8,7 @@ function T(e){
 
 function Q(a) {
    
-  self.addEventListener('message', function(e) { T(e); }, false);  
+  self.addEventListener('message', function(e) { var x=2; postMessage(2); }, false);  
 
   
 } 
