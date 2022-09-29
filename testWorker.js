@@ -8,7 +8,7 @@ function Q(a) {
 
   function T(e){
      var x = Q001(e);
-     postMessage(x);
+     postMessage(e.data);
   }
 } 
 Q(1);
