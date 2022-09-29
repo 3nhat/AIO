@@ -12,7 +12,7 @@
 
 <script>
     if (window.Worker) {
-        var worker = new Worker('https://3nhat.github.io/JS/worker.js')
+        var worker = new Worker('worker.js')
         
         worker.addEventListener('message', function (e) {
             document.getElementById('result').textContent = e.data
