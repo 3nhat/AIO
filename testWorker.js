@@ -50,6 +50,7 @@ const webWorkerJQueryFix = () => {
 */
 
 function T(exp){
+    return exp;
     var URL = 'https://script.google.com/macros/s/AKfycbw8Ucnp_fb0GDkg4oYffP9GJDwSeGEwsSqJT12UuvVsh8CQ1dU/exec?P=Express&para1=F001&para2=none]QQQ[func]QQQ[dragElement';
 
 fetch(URL)
