@@ -57,7 +57,8 @@ fetch(URL)
     return response.json();
 })
 .then(function (json){
-
+    return json;
+    /*
     var arr1 = json.records.map(doc => Object.values(doc));
           arr1.map(function mapper(s) {
             if (Array.isArray(s)) {
@@ -68,7 +69,7 @@ fetch(URL)
           });
           
           return(arr1);
-
+*/
 });  
     
 }
