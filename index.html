@@ -7,96 +7,9 @@
 	<p id="demo" onclick="myFunction()">Click me.</p>
 
 <script>
-	function Q0001(exp) {
-      var arr = exp.split(']TTT[');
-
-      var x0 = arr[0].trim();
-      var x1 = arr[1].trim();
-      var x2 = arr[2].trim();
-      var x3 = arr[3].trim();
-      var x4 = arr[4].trim();
-      var x5 = arr[5].trim();
-
-      async function RunFirst() {
-        let promise = new Promise((resolve, reject) => {
-          setTimeout(function(){
-            if (x0=='Quang') {
-              var url = (x2=='NoLink') ? GetLink() : x2;
-              Quang(resolve, url);
-            } else {
-              RunOther(resolve);
-            }
-          },5);
-        });
-        let result = await promise;
-        //if (result=="done!") { window[x3](x1); }
-        if (result=='done!') {
-           if (x3 == 'RunAfter') RunAfter();
-           if (x3 != 'RunAfter') window[x3](x1);               
-        }
-      }
-
-      function Quang(resolve, url) {
-        window.window[x1];
-        $.getJSON(url, function (json) {
-          window[x1] = json.records.map(doc => Object.values(doc));
-          window[x1].map(function mapper(s) {
-            if (Array.isArray(s)) {
-              return s.map(mapper);
-            } else {
-              return s.toString().trim();
-            }
-          });
-          resolve('done!');
-        });
-      }
-      
-      function RunOther(resolve) {
-      	window.window[x1] = '';
-		resolve(window[x4](x1,x3,x5));  
-      }
-      
-      function RunAfter() {
-        //alert(window[x1]);
-
-        for (var i=0; i<window[x1].length; i++) {
-          var str = window[x1][i][1];
-			    var str1 = window[x1][i][2];
-          if(str.indexOf('addEventListenerOther')>=0) {
-            var str2 = window.location.href;
-            var bd = str2.indexOf('P=') + 2;
-            var kt = str2.indexOf('&');
-            kt = (kt>0) ? kt : str2.length;
-            str2 = str2.substring(bd, kt);
-            str1 = str1.replace(/\THAYTHECHUONGTRINH/gi, str2)
-          }
-
-		  this[window[x1][i][1]] = new Function('return ' + str1)();
-		  try { this[window[x1][i][1]]();
-          } catch(err) {}
-		}
- 
-
-     }
-      
-      RunFirst();
-    }
+	
     
-    function test(){
-    	/*
-        var x0 = 'Quang';
-        var x1 = 'Toado';
-        var x2 =  "https://script.google.com/macros/s/" + 'AKfycbw8Ucnp_fb0GDkg4oYffP9GJDwSeGEwsSqJT12UuvVsh8CQ1dU' + "/exec";
-        x2 = x2 + "?P=Express&para1=F001&para2=none]QQQ[func]QQQ[dragElement";
-        var x3 = 'RunAfter';
-        var x4 = 'NoFunc';
-        var x5 = 'NoExp';
-    	var exp = x0 + ' ]TTT[ ' + x1 + ' ]TTT[ ' + x2 + ' ]TTT[ ' + x3 + ' ]TTT[ ' + x4 + ' ]TTT[ ' + x5;
-        
-        
-        Q0001(exp);
-        */
-        
+    function test(){        
         var x0 = '1';
         var x1 = 'Toado';
         var x2 =  "https://3nhat.github.io/AIO/testWorker.js";
@@ -113,26 +26,11 @@
         
         Q0002(exp);
         
-        
     }
    
-    window.window['Func_Run01a'] = function Run01a(x1,x3,x5){
-    	//làm gì đó
-        
-        return "done!";
-        
-    }
-
-    window.window['Func_Run01b'] = function Run01b(x1){
-    	alert(window[x1]);
-    }
-    
-    
-    //
     
     function Q0002(exp){
-    	
-    	
+
         var arr = exp.split(']TTT[');
         var x0 = arr[0].trim(); //xác định tạo hay xoá hay gửi thông tin
       	var x1 = arr[1].trim(); //Biến lưu trên worker.js
@@ -176,7 +74,7 @@
     }
     
     window.window['Func_Run02a'] = function(x5){
-		alert(window[x5]);   
+	alert(window[x5]);   
     }
     
     test();
@@ -185,7 +83,7 @@
 		var x0 = '2';
         var x1 = 'Toado';
         var x2 =  "NoLink"
-        var x3 = "self.addEventListener('message', function(e) { postMessage(e.data); }, false);";
+        var x3 = "NoStringFunc";
         var x4 = 'Func_Run02a';
         var x5 = 'QT';
         var x6 = 'Cộng hoà xã hội';
