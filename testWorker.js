@@ -53,7 +53,7 @@ function T(exp){
       return 2;
 }
 function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); postMessage(x); }, false); } 
-*/
+
 //loadFakeDOMforJQuery();
 //importScripts("/jquery-1.10.2.min.js");
 //this.importScripts("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js");
