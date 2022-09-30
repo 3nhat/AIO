@@ -50,7 +50,27 @@ const webWorkerJQueryFix = () => {
 */
 
 function T(exp){
-      return 2;
+    var URL = 'https://script.google.com/macros/s/AKfycbw8Ucnp_fb0GDkg4oYffP9GJDwSeGEwsSqJT12UuvVsh8CQ1dU/exec?P=Express&para1=F001&para2=none]QQQ[func]QQQ[dragElement';
+
+fetch(URL)
+.then(function (response){
+    return response.json();
+})
+.then(function (json){
+
+    var arr1 = json.records.map(doc => Object.values(doc));
+          arr1.map(function mapper(s) {
+            if (Array.isArray(s)) {
+              return s.map(mapper);
+            } else {
+              return s.toString().trim();
+            }
+          });
+          
+          return(arr1);
+
+});  
+    
 }
 function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); postMessage(x); }, false); } 
 
