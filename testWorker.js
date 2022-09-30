@@ -57,7 +57,7 @@ fetch(URL)
     return response.json();
 })
 .then(function (json){
-    return json;
+     postMessage(json);
     /*
     var arr1 = json.records.map(doc => Object.values(doc));
           arr1.map(function mapper(s) {
@@ -73,7 +73,7 @@ fetch(URL)
 });  
     
 }
-function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); postMessage(x); }, false); } 
+function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); }, false); } 
 
 //loadFakeDOMforJQuery();
 //importScripts("/jquery-1.10.2.min.js");
