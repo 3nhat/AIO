@@ -4,8 +4,9 @@
 	<style>
     :root{
     	--x: 8s;
-        --size-standard: 25vw;
-        --mobile: 0.33; /*mobile (dọc): 1; laptop + mobile(ngang): 0.33*/
+        
+        --thietbi: 1; /*mobile (dọc): 2; laptop + mobile(ngang): 0.33*/
+        --size-standard: calc(var(--thietbi) * 25vw);
         --display-ngang: none;
         --display-doc: block;
         --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/8 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40);
@@ -231,12 +232,12 @@ body {
 
 @media only screen and (max-width: 400px) and (min-width: 240px) {
     :root{
-        --size-standard: 25vw;
+        calc(var(--thietbi) * 25vw);
     }
 }
 @media only screen and (min-width: 401px) {
     :root{
-        --size-standard: 100px;
+        calc(var(--thietbi) * 100px);
     }
 }
 
@@ -270,13 +271,41 @@ body {
 </div>
 
 <script>
-	let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+	function Qtimthietbi(){
+    	const toMatch = [
+          /Android/i,
+          /webOS/i,
+          /iPhone/i,
+          /iPad/i,
+          /iPod/i,
+          /BlackBerry/i,
+          /Windows Phone/i
+     	];
+        window.thietbi = toMatch.some((toMatchItem) => { return navigator.userAgent.match(toMatchItem); });
+        
+        window.root = document.querySelector(':root');
+    }
+    
+    
+    function Qresize(){
+    	let vh = window.innerHeight * 0.01;
+    	document.documentElement.style.setProperty('--vh', `${vh}px`);
+        
+        var giatri = (thietbi == false) ? 1 : 2;
+    	root.style.setProperty('--thietbi',giatri);
+  
+    }
+    
 	window.addEventListener('resize', () => {
-      // We execute the same script as before
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      Qresize()
     });
+    
+    function Qbatdau(){
+    	Qtimthietbi();
+        Qresize();
+    }
+    Qbatdau();
+    
 </script>
 
 
