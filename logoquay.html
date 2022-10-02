@@ -9,8 +9,15 @@
         --size-standard: 25vw;
         --display-ngang: none;
         --display-doc: block;
+        --display-content1: block;
+        --display-content2: block;
+        --display-content3: block;
 
         --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/8 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40);
+        
+        --heso-cotcontent : 3;
+        --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
+    
     }
 
 html, body {
@@ -21,12 +28,12 @@ html, body {
 	 margin: 0;
 }
 
-body { 
+body, .content { 
         	overflow: hidden;	
 
         }
-        body::-webkit-scrollbar { display: none;}
-		body { -ms-overflow-style: none; scrollbar-width: none; }
+        body::-webkit-scrollbar .content::-webkit-scrollbar { display: none;}
+		body, .content { -ms-overflow-style: none; scrollbar-width: none; }
 		
 
 
@@ -99,13 +106,23 @@ body {
 }
 
 .content{
-	width: calc(100vw - 6 * var(--size-standard)/40);
+	/*width: calc(100vw - 6 * var(--size-standard)/40);*/
+	display: flex;
+    flex-direction: row;
+    
+}
+.content1, .content2, .content3{
+	width: var(--width-content);
     margin: calc(var(--size-standard)/40);
     padding: calc(2 * var(--size-standard)/40);
     height: var(--height-content);
     background: green;
     
 }
+.content1{ display: var(--display-content1);}
+.content2{ display: var(--display-content2);}
+.content3{ display: var(--display-content3);}
+
 
  .coin {
 	 /*font-size: 200px;*/
@@ -277,7 +294,9 @@ body {
         <div class='header3'>Thông tin chạy</div>
     </div>
     <div class='content'>
-    
+    	<div class='content1'></div>
+        <div class='content2'></div>
+        <div class='content3'></div>
     </div>
 	
 </div>
@@ -308,6 +327,7 @@ body {
         var h = window.innerHeight;
         
         if (thietbi == false) {
+        	root.style.setProperty('--heso-cotcontent',3);
 			root.style.setProperty('--thietbi',1);
             if(w>401) {
             	root.style.setProperty('--size-standard','100px');
@@ -335,18 +355,34 @@ body {
                     root.style.setProperty('--display-doc','none');
                     var nd = '<p>Thiết bị có quá nhỏ quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 240px - 400px<br>cao: 480px - 800px</p>';
                 }
+                
+                root.style.setProperty('--heso-cotcontent',1);
+                root.style.setProperty('--display-content1','block');
+                root.style.setProperty('--display-content2','none');
+                root.style.setProperty('--display-content3','none');
+
             }
             if(w>=720){
             	root.style.setProperty('--display-ngang','none');
                 root.style.setProperty('--display-doc','block');
+                
+                root.style.setProperty('--display-content1','block');
+                root.style.setProperty('--display-content2','block');
+                root.style.setProperty('--display-content3','block');
             }
             
             EID('ngang').innerHTML = nd;
         	
-
+			
             
             
         } else {
+        	
+            root.style.setProperty('--heso-cotcontent',1);
+            root.style.setProperty('--display-content1','block');
+        	root.style.setProperty('--display-content2','none');
+        	root.style.setProperty('--display-content3','none');
+            
           if(w>=h) {
              root.style.setProperty('--display-ngang','flex');
              root.style.setProperty('--display-doc','none');
@@ -361,6 +397,8 @@ body {
         	
           EID('ngang').innerHTML = nd;
         }
+        
+        
     	
   
     }
