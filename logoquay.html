@@ -6,7 +6,7 @@
     	--x: 8s;
         
         --thietbi: 1; /*mobile (dọc): 2; laptop + mobile(ngang): 0.33*/
-        --size-standard: calc(var(--thietbi) * 25vw);
+        --size-standard: 25vw;
         --display-ngang: none;
         --display-doc: block;
         --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/8 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40);
@@ -232,12 +232,12 @@ body {
 
 @media only screen and (max-width: 400px) and (min-width: 240px) {
     :root{
-        calc(var(--thietbi) * 25vw);
+        --size-standard: 25vw;
     }
 }
 @media only screen and (min-width: 401px) {
     :root{
-        calc(var(--thietbi) * 100px);
+        --size-standard: calc(var(--thietbi) * 100px);
     }
 }
 
