@@ -9,6 +9,7 @@
         --size-standard: 25vw;
         --display-ngang: none;
         --display-doc: block;
+
         --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/8 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40);
     }
 
@@ -33,15 +34,21 @@ body {
 .ngang {
 	display: var(--display-ngang);
     height: 100vh;
-
+    width: 80vw;
 
   	align-items: center;
-    /*justify-content: center;*/
-    text-align: center;
+    justify-content: center;
     padding: 0 10vw 0 10vw;
-
+    
     background: orange;
     z-index: 100;
+    font-size: calc(var(--size-standard)/4);
+}
+
+.ngang p {
+	width: 80vw;
+    text-align: center;
+    font-weight: 900;
 }
 .doc {
     z-index: 99;
@@ -223,12 +230,7 @@ body {
     overflow: hidden;
 }
 
-@media only screen and (max-width: 239px) {
-    :root{
-        --display-ngang: flex;
-        --display-doc: none;
-    }
-}
+/*
 
 @media only screen and (max-width: 400px) and (min-width: 240px) {
     :root{
@@ -241,14 +243,24 @@ body {
     }
 }
 
+@media only screen and ((max-width: 239px) or (max-height: 479px)) {
+    :root{
+        --display-ngang1: flex;
+        --display-doc: none;
+    }
+}
+
+*/
+
 
 
 
     </style>
 </head>
 <body>
-<div class='ngang'>Thiết bị có màn hình quá nhỏ để hiện thị</div>
+<div class='ngang' id='ngang'></div>
 <div class='doc'>
+
 	<div class='header'>
     	<div class='header1'>Công ty cổ phần tập đoàn 3 Nhất</div>
         <div class='header2'>
@@ -271,6 +283,8 @@ body {
 </div>
 
 <script>
+	function EID(NameID) {return document.getElementById(NameID);}
+    
 	function Qtimthietbi(){
     	const toMatch = [
           /Android/i,
@@ -290,9 +304,62 @@ body {
     function Qresize(){
     	let vh = window.innerHeight * 0.01;
     	document.documentElement.style.setProperty('--vh', `${vh}px`);
+        var w = window.innerWidth;
+        var h = window.innerHeight;
         
-        var giatri = (thietbi == false) ? 1 : 2;
-    	root.style.setProperty('--thietbi',giatri);
+        if (thietbi == false) {
+			root.style.setProperty('--thietbi',1);
+            if(w>401) {
+            	root.style.setProperty('--size-standard','100px');
+            } else {
+            	root.style.setProperty('--size-standard','25vw');
+            }
+            
+            if (w>400 && w<720){
+            	root.style.setProperty('--display-ngang','flex');
+                root.style.setProperty('--display-doc','none');
+                var nd = '<p>Máy tính có khung làm việc quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 720px - cao: 480px</p>'
+            } 
+            if (w<240){
+            	root.style.setProperty('--display-ngang','flex');
+                root.style.setProperty('--display-doc','none');
+                var nd = '<p>Thiết bị có quá nhỏ quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 240px - 400px<br>cao: 480px - 800px</p>';
+            } 
+            if (w>=240 && w<=400){
+            	if(h>=1.5*w) {
+                  root.style.setProperty('--display-ngang','none');
+                  root.style.setProperty('--display-doc','block');
+                  var nd='';
+                } else {
+                	root.style.setProperty('--display-ngang','flex');
+                    root.style.setProperty('--display-doc','none');
+                    var nd = '<p>Thiết bị có quá nhỏ quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 240px - 400px<br>cao: 480px - 800px</p>';
+                }
+            }
+            if(w>=720){
+            	root.style.setProperty('--display-ngang','none');
+                root.style.setProperty('--display-doc','block');
+            }
+            
+            EID('ngang').innerHTML = nd;
+        	
+
+            
+            
+        } else {
+          if(w>=h) {
+             root.style.setProperty('--display-ngang','flex');
+             root.style.setProperty('--display-doc','none');
+             var nd = '<p>Chương trình không được thiết kế để hoạt động theo chiều ngang của thiết bị</p>';
+          } else {
+          	root.style.setProperty('--thietbi',2);
+            root.style.setProperty('--size-standard','200px');
+            var nd = '';
+          }
+        	
+          EID('ngang').innerHTML = nd;
+        }
+    	
   
     }
     
