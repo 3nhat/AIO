@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<style>
     :root{
     	--x: 8s;
@@ -101,7 +105,7 @@ body, .content, .content1, .content2, .content3 {
     font-size: calc(var(--size-standard)/8);
 	text-align: center;
     font-weight: 900;
-    background: orange;
+    
     color: white;
     display: flex;
   	flex-direction: row;
@@ -109,7 +113,9 @@ body, .content, .content1, .content2, .content3 {
 .header3_1, .header3_3{
 	width: calc(var(--size-standard)/4);
     height: calc(var(--size-standard)/4);
-    background: green; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header3_2{
@@ -118,11 +124,13 @@ body, .content, .content1, .content2, .content3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: orange;
 
 }
 .header3_2 p {
 	text-align: center;
 	width: 100%;
+
 }
 
 .content{
@@ -269,7 +277,6 @@ body, .content, .content1, .content2, .content3 {
 }
 
 /*
-
 @media only screen and (max-width: 400px) and (min-width: 240px) {
     :root{
         --size-standard: 25vw;
@@ -280,14 +287,12 @@ body, .content, .content1, .content2, .content3 {
         --size-standard: calc(var(--thietbi) * 100px);
     }
 }
-
 @media only screen and ((max-width: 239px) or (max-height: 479px)) {
     :root{
         --display-ngang1: flex;
         --display-doc: none;
     }
 }
-
 */
 
 
@@ -314,9 +319,16 @@ body, .content, .content1, .content2, .content3 {
         </div>
         <div class='header3'>
         	<div class='header3_1'>
+              <span class="fa-stack">
+                <i class="fa fa-chevron-left fa-stack-2x" style="color: red"></i>
+              </span>
+
             </div>
             <div class='header3_2'>Thông tin chạy</div>
             <div class='header3_3'>
+            	<span class="fa-stack">
+                  <i class="fa fa-chevron-right fa-stack-2x" style="color: blue"></i>
+                </span>
             </div>
         	
         </div>
@@ -334,14 +346,14 @@ body, .content, .content1, .content2, .content3 {
     
 	function Qtimthietbi(){
     	const toMatch = [
-          /Android/i,
-          /webOS/i,
-          /iPhone/i,
-          /iPad/i,
-          /iPod/i,
-          /BlackBerry/i,
-          /Windows Phone/i
-     	];
+          /Android/i,
+          /webOS/i,
+          /iPhone/i,
+          /iPad/i,
+          /iPod/i,
+          /BlackBerry/i,
+          /Windows Phone/i
+     	];
         window.thietbi = toMatch.some((toMatchItem) => { return navigator.userAgent.match(toMatchItem); });
         
         window.root = document.querySelector(':root');
@@ -446,4 +458,3 @@ body, .content, .content1, .content2, .content3 {
 
 </body>
 </html>
-
