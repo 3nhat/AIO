@@ -13,7 +13,7 @@
         --display-content2: block;
         --display-content3: block;
 
-        --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/8 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40);
+        --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/4 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40);
         
         --heso-cotcontent : 3;
         --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
@@ -28,12 +28,12 @@ html, body {
 	 margin: 0;
 }
 
-body, .content { 
+body, .content, .content1, .content2, .content3 { 
         	overflow: hidden;	
 
         }
-        body::-webkit-scrollbar .content::-webkit-scrollbar { display: none;}
-		body, .content { -ms-overflow-style: none; scrollbar-width: none; }
+        body::-webkit-scrollbar, .content::-webkit-scrollbar, .content1::-webkit-scrollbar, .content2::-webkit-scrollbar, .content3::-webkit-scrollbar { display: none;}
+		body, .content, .content1, .content2, .content3 { -ms-overflow-style: none; scrollbar-width: none; }
 		
 
 
@@ -94,15 +94,35 @@ body, .content {
 }
 
 .header3{
-	width: calc(100vw - 6 * var(--size-standard)/40);
+	/*width: calc(100vw - 6 * var(--size-standard)/40);*/
     margin: calc(var(--size-standard)/40);
-    padding: calc(2 * var(--size-standard)/40);
-    height: calc(var(--size-standard)/8);
+    padding: calc(var(--size-standard)/80);
+
     font-size: calc(var(--size-standard)/8);
 	text-align: center;
     font-weight: 900;
     background: orange;
     color: white;
+    display: flex;
+  	flex-direction: row;
+}
+.header3_1, .header3_3{
+	width: calc(var(--size-standard)/4);
+    height: calc(var(--size-standard)/4);
+    background: green; 
+}
+
+.header3_2{
+	width: calc(100vw - 2 * var(--size-standard)/4);
+    height: calc(var(--size-standard)/4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.header3_2 p {
+	text-align: center;
+	width: 100%;
 }
 
 .content{
@@ -116,7 +136,8 @@ body, .content {
     margin: calc(var(--size-standard)/40);
     padding: calc(2 * var(--size-standard)/40);
     height: var(--height-content);
-    background: green;
+    border: 0.5px green solid;
+
     
 }
 .content1{ display: var(--display-content1);}
@@ -291,7 +312,14 @@ body, .content {
             
             </div>
         </div>
-        <div class='header3'>Thông tin chạy</div>
+        <div class='header3'>
+        	<div class='header3_1'>
+            </div>
+            <div class='header3_2'>Thông tin chạy</div>
+            <div class='header3_3'>
+            </div>
+        	
+        </div>
     </div>
     <div class='content'>
     	<div class='content1'></div>
