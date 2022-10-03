@@ -193,15 +193,41 @@ body, .content, .content1, .content2, .content3 {
 .content1b, .content2b, .content3b{
 	width: var(--width-content);
     height: calc(var(--height-content) - var(--size-standard)/2);
-    display: flex;
-  	flex-direction: row;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
-    
+
     border-radius: calc(3 * var(--size-standard)/40);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    font-size: calc(var(--width-content)/24);
+    font-weight: 800;
 }
+
+.content1b, .content3b{
+	overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.content1bK{
+	display: flex;
+    flex-wrap: wrap;
+  	/*flex-direction: row;*/
+    /*align-items: center;*/
+    justify-content: left;
+}
+.VD_content1bK {
+  
+	width: calc(var(--width-content)/4 - 6*var(--size-standard)/40);
+    
+	margin: calc(var(--size-standard)/40);
+    padding: calc(var(--size-standard)/40);
+    
+    border-radius: calc(var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
 
 
  .coin {
@@ -371,14 +397,14 @@ body, .content, .content1, .content2, .content3 {
         <div class='header3'>
         	<div class='header3_1'>
               	<span class="fa-stack">
-                  <i class="fa fa-chevron-left fa-stack-2x" style="color: red"></i>
+                  <i id='back' class="fa fa-chevron-left fa-stack-2x" style="color: red"></i>
                 </span>
 
             </div>
             <div class='header3_2'>Thông tin chạy</div>
             <div class='header3_3'>
 				<span class="fa-stack">
-                  <i class="fa fa-chevron-right fa-stack-2x" style="color: blue"></i>
+                  <i id='next' class="fa fa-chevron-right fa-stack-2x" style="color: blue"></i>
                 </span>
             </div>
         	
@@ -399,7 +425,15 @@ body, .content, .content1, .content2, .content3 {
             	</div>
             </div>
             <div class='content1b' id='content1b' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
-            
+            	<div class='content1bK'>
+                	<div class='VD_content1bK'>
+                    
+                    </div>
+                    <div class='VD_content1bK'>22/02/2022</div>
+                    <div class='VD_content1bK'>22/02/2022</div>
+                    <div class='VD_content1bK'>22/02/2022</div>
+                </div>
+                
             </div>
         </div>
         <div class='content2' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
@@ -583,7 +617,7 @@ body, .content, .content1, .content2, .content3 {
     
     //document.addEventListener('swiped-left', function(e) {
 	EID('content1b').addEventListener('swiped-left', function(e) {
-  		alert(e.target.className); // element that was swiped
+  		//alert(e.target.className); // element that was swiped
   		//alert(e.detail); // see event data below
 	});
     //document.addEventListener('swiped-right', function(e) {
