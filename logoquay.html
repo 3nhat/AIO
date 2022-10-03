@@ -543,9 +543,43 @@ body, .content, .content1, .content2, .content3 {
   
     }
     
+    function preventPullToRefresh(element) {
+      var prevent = false;
+         document.querySelector(element).addEventListener('touchstart', function(e) {
+              if (e.touches.length !== 1) {
+                   return;
+              }
+              var scrollY = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+              prevent = (scrollY === 0);
+         });
+         document.querySelector(element).addEventListener('touchmove', function(e) {
+              if (prevent) {
+                   prevent = false;
+                   e.preventDefault();
+              }
+         });
+    }
+    
 	window.addEventListener('resize', () => {
       Qresize()
     });
+    
+    window.addEventListener("contextmenu", function(e) {
+          e.preventDefault();
+     }, false);
+     window.addEventListener("keydown", function(e) {
+          if (e.ctrlKey || e.keyCode==123) {
+               e.stopPropagation();
+               e.preventDefault();
+          }
+     }); 
+     window.addEventListener("touchstart", function(e) {
+          if(e.touches.length > 1){
+               e.preventDefault();
+          }
+     },{passive: false});
+    
+    
     
     //document.addEventListener('swiped-left', function(e) {
 	EID('content1b').addEventListener('swiped-left', function(e) {
@@ -560,6 +594,7 @@ body, .content, .content1, .content2, .content3 {
     
         
     function Qbatdau(){
+    	preventPullToRefresh('html');
     	Qtimthietbi();
         Qresize();
     }
@@ -570,4 +605,3 @@ body, .content, .content1, .content2, .content3 {
 
 </body>
 </html>
-
