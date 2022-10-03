@@ -21,6 +21,8 @@
         --display-content1: block;
         --display-content2: block;
         --display-content3: block;
+        
+        --display-content-phu: flex;
 
         --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/4 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 1.5 * 2 * var(--size-standard)/40);
         
@@ -313,7 +315,7 @@ font-weight: 600;
   }
   
   
-  .VD_content1bKKc, .VD_content1bKKd {display: flex;}
+  .VD_content1bKKc, .VD_content1bKKd {display: var(--display-content-phu);}
 
  .coin {
 	 /*font-size: 200px;*/
@@ -500,7 +502,7 @@ font-weight: 600;
         	<div class='content1a'>
             	<div class='content1a1'>
                 	<span class="fa-stack fa-2x">
-                		<i class="fa fa-list" style="color: blue"></i>
+                		<i class="fa fa-list" style="color: blue" onclick='testthunghiem()'></i>
                     </span>
             	</div>
                 <div class='content1a2'>
@@ -836,6 +838,12 @@ font-weight: 600;
         Qresize();
     }
     Qbatdau();
+    
+    function testthunghiem() {
+    	var d = root.style.getPropertyValue('--display-content-phu');
+        var dis = (d=='flex') ? 'none' : 'flex';
+        root.style.setProperty('--display-content-phu',dis);
+    }
     
 </script>
 
