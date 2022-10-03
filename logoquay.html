@@ -210,6 +210,13 @@ font-weight: 600;
 .content1b, .content3b{
 	overflow-y: scroll;
     overflow-x: hidden;
+    
+
+}
+
+.khung1{
+	display: flex;
+    flex-wrap: wrap;
 }
 
 .content1bK{
@@ -219,6 +226,9 @@ font-weight: 600;
     /*align-items: center;*/
     justify-content: left;
     margin-top: calc(4*var(--size-standard)/40);
+    margin-left: calc(2*var(--size-standard)/40);
+    
+    flex: calc(var(--width-content)/4 - 4*var(--size-standard)/40);
 }
 
 .content1bKK{
@@ -230,13 +240,17 @@ font-weight: 600;
     border-radius: calc(var(--size-standard)/40);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: calc(2*var(--size-standard)/40);
+    
+    
 }
 .VD_content1bKK {
   
-	width: calc(var(--width-content)/4 - 8*var(--size-standard)/40);
+	
+    width: calc(var(--width-content)/4 - 10*var(--size-standard)/40);
+    
+	
+	margin-left: calc(var(--size-standard)/80);
 
-	margin-left: calc(var(--size-standard)/40);
-    margin-right: calc(var(--size-standard)/40);
     padding-left: calc(var(--size-standard)/40);
 	padding-right: calc(var(--size-standard)/40);
     
@@ -281,20 +295,25 @@ font-weight: 600;
     font-size: 1em;
     text-align: justify;
     font-size: calc(var(--width-content)/30);
+    border-top: 0.5px green solid;
     
 }
 
 .VD_content1bKKd a{
-	text-decoration: underline;
+	/*text-decoration: underline;*/
+    margin-right: calc(4*var(--size-standard)/40);
 }
 
-	.content1bK:nth-child(odd) {
+	.content1bK:nth-child(odd) .content1bKK {
     background: rgb(230, 255, 242);
   }
 
-  .content1bK:nth-child(even) {
+  .content1bK:nth-child(even) .content1bKK {
     background: rgb(255, 230, 204);
   }
+  
+  
+  .VD_content1bKKc, .VD_content1bKKd {display: flex;}
 
  .coin {
 	 /*font-size: 200px;*/
@@ -491,128 +510,131 @@ font-weight: 600;
             	</div>
             </div>
             <div class='content1b' id='content1b' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
-            	<div class='content1bK'>
-                	<div class='content1bKK'>
-                      <div class='VD_content1bKK'>
-						<div class='VD_content1bKKa'>22/02/2022</div>
-                        <div class='VD_content1bKKb'>Phát + 1</div>
-                        <div class='VD_content1bKKb2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+            	<div class='khung1'>
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
                         </div>
                       </div>
-                      <div class='VD_content1bKKc'>
-                      	<div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
-						<div class='VD_content1bKK'>22/02/2022</div>
-                      	<div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKKc2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
                         </div>
                       </div>
-                      
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
                       </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
                       </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                    </div>
-                </div>
+                  </div>
                 
-                <div class='content1bK'>
-                	<div class='content1bKK'>
-                      <div class='VD_content1bKK'>
-						<div class='VD_content1bKKa'>22/02/2022</div>
-                        <div class='VD_content1bKKb'>Phát + 1</div>
-                        <div class='VD_content1bKKb2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      <div class='VD_content1bKKc'>
-                      	<div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
-						<div class='VD_content1bKK'>22/02/2022</div>
-                      	<div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKKc2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                    </div>
-                </div>
-                
-                <div class='content1bK'>
-                	<div class='content1bKK'>
-                      <div class='VD_content1bKK'>
-						<div class='VD_content1bKKa'>22/02/2022</div>
-                        <div class='VD_content1bKKb'>Phát + 1</div>
-                        <div class='VD_content1bKKb2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      <div class='VD_content1bKKc'>
-                      	<div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
-						<div class='VD_content1bKK'>22/02/2022</div>
-                      	<div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKKc2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                    </div>
-                </div>
-                
-                <div class='content1bK'>
-                	<div class='content1bKK'>
-                      <div class='VD_content1bKK'>
-						<div class='VD_content1bKKa'>22/02/2022</div>
-                        <div class='VD_content1bKKb'>Phát + 1</div>
-                        <div class='VD_content1bKKb2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      <div class='VD_content1bKKc'>
-                      	<div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
-						<div class='VD_content1bKK'>22/02/2022</div>
-                      	<div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKK'>22/02/2022</div>
-                        <div class='VD_content1bKKc2'>
-                        	<progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
-                        </div>
-                      </div>
-                      
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
-                      </div>
-                      <div class='VD_content1bKKd'>
-                      	<a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
-                      </div>
-                    </div>
                 </div>
                 
             </div>
