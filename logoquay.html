@@ -548,7 +548,7 @@ body, .content, .content1, .content2, .content3 {
     });
     
     document.addEventListener('swiped', function(e) {
-  		alert(e.target); // element that was swiped
+  		alert(e.target.className); // element that was swiped
   		alert(e.detail); // see event data below
   		alert(e.detail.dir); // swipe direction
 	});
