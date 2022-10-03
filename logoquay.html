@@ -547,11 +547,13 @@ body, .content, .content1, .content2, .content3 {
       Qresize()
     });
     
-    document.addEventListener('swiped-left', function(e) {
+     //document.addEventListener('swiped-left', function(e) {
+    EID('content1').addEventListener('swiped-left', function(e) {
   		alert(e.target.className); // element that was swiped
   		//alert(e.detail); // see event data below
 	});
-    document.addEventListener('swiped-right', function(e) {
+    //document.addEventListener('swiped-right', function(e) {
+    EID('content1').addEventListener('swiped-left', function(e) {
   		alert(e.target.className); // element that was swiped
   		//alert(e.detail); // see event data below
 	});
