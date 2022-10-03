@@ -21,7 +21,7 @@
         --display-content2: block;
         --display-content3: block;
 
-        --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/4 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40);
+        --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/4 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 1.5 * 2 * var(--size-standard)/40);
         
         --heso-cotcontent : 3;
         --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
@@ -146,16 +146,43 @@ body, .content, .content1, .content2, .content3 {
 }
 .content1, .content2, .content3{
 	width: var(--width-content);
-    margin: calc(var(--size-standard)/40);
+	margin: calc(var(--size-standard)/40);
     padding: calc(2 * var(--size-standard)/40);
     height: var(--height-content);
-    border: 0.5px green solid;
 
-    
 }
 .content1{ display: var(--display-content1);}
 .content2{ display: var(--display-content2);}
 .content3{ display: var(--display-content3);}
+
+.content1a, .content2a, .content3a{
+	width: var(--width-content);
+    display: flex;
+  	flex-direction: row;
+}
+.content1a1, .content1a2, .content2a1, .content2a2, .content3a1, .content3a2{
+	height: calc(var(--size-standard)/3);
+    width: calc(var(--size-standard)/3);
+    margin-left: calc(var(--size-standard)/40);
+    margin-right: calc(var(--size-standard)/40);
+    font-size: calc(var(--size-standard)/6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content1b, .content2b, .content3b{
+	width: var(--width-content);
+    height: calc(var(--height-content) - var(--size-standard)/3);
+    display: flex;
+  	flex-direction: row;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    border-radius: calc(3 * var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 
  .coin {
@@ -339,9 +366,57 @@ body, .content, .content1, .content2, .content3 {
         </div>
     </div>
     <div class='content'>
-    	<div class='content1'></div>
-        <div class='content2'></div>
-        <div class='content3'></div>
+    	<div class='content1'>
+        	<div class='content1a'>
+            	<div class='content1a1'>
+                	<span class="fa-stack fa-2x">
+                		<i class="fa fa-list" style="color: blue"></i>
+                    </span>
+            	</div>
+                <div class='content1a2'>
+                	<span class="fa-stack fa-2x">
+                    	<i class="fa fa-plus-square" style="color: red"></i>
+                    </span>
+            	</div>
+            </div>
+            <div class='content1b'>
+            
+            </div>
+        </div>
+        <div class='content2'>
+        	<div class='content2a'>
+            	<div class='content2a1'>
+                	<span class="fa-stack fa-2x">
+                		<i class="fa fa-list" style="color: blue"></i>
+                    </span>
+            	</div>
+                <div class='content2a2'>
+                	<span class="fa-stack fa-2x">
+                    	<i class="fa fa-plus-square" style="color: red"></i>
+                    </span>
+            	</div>
+            </div>
+            <div class='content2b'>
+            
+            </div>
+        </div>
+        <div class='content3'>
+        	<div class='content3a'>
+            	<div class='content3a1'>
+                	<span class="fa-stack fa-2x">
+                		<i class="fa fa-list" style="color: blue"></i>
+                    </span>
+            	</div>
+                <div class='content3a2'>
+                	<span class="fa-stack fa-2x">
+                    	<i class="fa fa-plus-square" style="color: red"></i>
+                    </span>
+            	</div>
+            </div>
+            <div class='content3b'>
+            
+            </div>
+        </div>
     </div>
 	
 </div>
@@ -422,7 +497,8 @@ body, .content, .content1, .content2, .content3 {
             
             
         } else {
-        	
+
+            
             root.style.setProperty('--heso-cotcontent',1);
             root.style.setProperty('--display-content1','block');
         	root.style.setProperty('--display-content2','none');
@@ -463,3 +539,4 @@ body, .content, .content1, .content2, .content3 {
 
 </body>
 </html>
+
