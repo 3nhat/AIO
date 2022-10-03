@@ -42,6 +42,24 @@ body, .content, .content1, .content2, .content3 {
         }
         body::-webkit-scrollbar, .content::-webkit-scrollbar, .content1::-webkit-scrollbar, .content2::-webkit-scrollbar, .content3::-webkit-scrollbar { display: none;}
 		body, .content, .content1, .content2, .content3 { -ms-overflow-style: none; scrollbar-width: none; }
+        
+          body{
+      -webkit-touch-callout: none; 
+      -webkit-user-select: none; 
+      -khtml-user-select: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none;
+
+      overscroll-behavior-y: contain;
+  }
+  
+  
+  *{
+      touch-action: manipulation;
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+  }
 		
 
 
@@ -528,6 +546,7 @@ body, .content, .content1, .content2, .content3 {
       Qresize()
     });
     
+        
     function Qbatdau(){
     	Qtimthietbi();
         Qresize();
