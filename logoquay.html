@@ -229,7 +229,7 @@ body, .content, .content1, .content2, .content3 {
 }
 .VD_content1bKK {
   
-	width: calc(var(--width-content)/4 - 6*var(--size-standard)/40);
+	width: calc(var(--width-content)/4 - 8*var(--size-standard)/40);
 
 	margin-left: calc(var(--size-standard)/40);
     margin-right: calc(var(--size-standard)/40);
@@ -252,32 +252,36 @@ body, .content, .content1, .content2, .content3 {
 	margin-top: calc(3*var(--size-standard)/40);
     margin-left: calc(var(--size-standard)/40);
     text-align: center;
-    margin-top: calc(-2*var(--size-standard)/40);
+    margin-top: calc(-1 * var(--thietbi) * var(--size-standard)/40);
 }
 .VD_content1bKKc{
-	width: calc(3*(var(--width-content)/4 - 2*var(--size-standard)/40));
+	width: calc(3*(var(--width-content)/4 - 3*var(--size-standard)/40));
     display: flex;
     flex-wrap: wrap;
 }
 .VD_content1bKKc1{
-	width: calc(3*(var(--width-content)/4 - 2*var(--size-standard)/40));
+	width: calc(3*(var(--width-content)/4 - 3*var(--size-standard)/40));
+    font-style: italic;
 }
+
 .VD_content1bKKc2{
-	margin-top: calc(-0.2 * var(--thietbi) * var(--size-standard)/40);
-	width: calc(3*(var(--width-content)/4 - 2*var(--size-standard)/40));
+	margin-top: calc(-0.3 * var(--thietbi) * var(--size-standard)/40);
+	width: calc(3*(var(--width-content)/4 - 3*var(--size-standard)/40));
 }
 
 .VD_content1bKKd {
-	width: calc(var(--width-content) - 10*var(--size-standard)/40);
+	width: calc(var(--width-content) - 14*var(--size-standard)/40);
 	margin: calc(var(--size-standard)/40);
-    padding-left: calc(4*var(--size-standard)/40);
+    padding-left: calc(var(--size-standard)/40);
     padding-right: calc(var(--size-standard)/40);
     /*font-size: calc(var(--width-content)/(28 * var(--thietbi)));*/
+    text-align: justify;
     
 }
 
-
-
+.VD_content1bKKd a{
+	text-decoration: underline;
+}
 
  .coin {
 	 /*font-size: 200px;*/
@@ -494,13 +498,13 @@ body, .content, .content1, .content2, .content3 {
                       </div>
                       
                       <div class='VD_content1bKKd'>
-                      	NG: 22/02/2022 22/02/2022 22/02/2022
+                      	<a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
                       </div>
                       <div class='VD_content1bKKd'>
-                      	NN: 22/02/2022 22/02/2022 22/02/2022
+                      	<a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
                       </div>
                       <div class='VD_content1bKKd'>
-                      	Ghi chú: Khai giá ~ đồng kiểm
+                      	<a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
                       </div>
                     </div>
                 </div>
