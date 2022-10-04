@@ -30,27 +30,7 @@
         --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
         
         
-        --mobile: 0.33;
-        --width-cot:var(--width-content);
-            --heso-cot: 2;
-            --heso-num-report: 1;
-
-            --pad-report: calc(4/(1 + 1/var(--mobile)) * var(--width-cot)/104);
-            --width-page-report: calc(2*var(--width-cot));
-            
-            --width-khung-report: calc( var(--width-cot) * 4/(1 + 1/var(--mobile)));
-            
-            --width-khungtrong-report: calc(var(--width-khung-report) - 4*2*var(--pad-report) - (3 + 1/var(--mobile))*var(--pad-report));
-
-            --font-Rpt: calc(2.7 * var(--pad-report));
-
-
-            --flow-body: hidden;
-            --height-report_vandon: var(--height-Content);
-            --flow-report: scroll;
-
-
-            --display-webkit-box: -webkit-box;
+        --hesoContent2 : 6;
     
     }
 
@@ -254,8 +234,9 @@ font-weight: 600;
     margin-top: calc(4*var(--size-standard)/40);
     margin-left: calc(2*var(--size-standard)/40);
     
-    flex: calc(var(--width-content)/4 - 4*var(--size-standard)/40);
+    flex: calc(var(--width-content)/var(--hesoContent2) - 4*var(--size-standard)/40);
 }
+
 
 .content1bKK{
 	display: flex;
@@ -355,8 +336,8 @@ font-weight: 600;
   
   .VD_content1bKK_icon {
   
-    width: calc(var(--width-content)/4 - 10*var(--size-standard)/40);
-    padding-left: calc(var(--size-standard)/40);
+    width: calc(var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40);
+	padding-left: calc(var(--size-standard)/40);
 	padding-right: calc(var(--size-standard)/40);
     
 }
@@ -365,16 +346,16 @@ font-weight: 600;
     /*
   	font-size: 2.8em;
     */
-    font-size: calc((var(--width-content)/4 - 10*var(--size-standard)/40)/2);
+    font-size: calc((var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40)/2);
   }
   
   .icon1Text1, .icon1Text2 {
   	width: 100%;
   	/*font-size: 1em;*/
-    font-size: calc((var(--width-content)/4 - 10*var(--size-standard)/40)/6);
+    font-size: calc((var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40)/6);
   }
   .icon1Text2 {
-  	margin-top: calc(-3 * var(--thietbi) * var(--size-standard)/40);
+  	margin-top: calc(-3 * var(--thietbi) * var(--size-standard)/50);
   }
 
  .coin {
@@ -732,6 +713,7 @@ font-weight: 600;
                         </div>
                       </div>
                   </div>
+                  
                   <div class='content1bK'>
                       <div class='content1bKK'>
                         <div class='VD_content1bKK_icon'>
@@ -749,6 +731,7 @@ font-weight: 600;
                         </div>
                       </div>
                   </div>
+                  
                   <div class='content1bK'>
                       <div class='content1bKK'>
                         <div class='VD_content1bKK_icon'>
@@ -766,6 +749,25 @@ font-weight: 600;
                         </div>
                       </div>
                   </div>
+                  
+				  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
                   <div class='content1bK'>
                       <div class='content1bKK'>
                         <div class='VD_content1bKK_icon'>
@@ -783,6 +785,7 @@ font-weight: 600;
                         </div>
                       </div>
                   </div>
+                  
                   <div class='content1bK'>
                       <div class='content1bKK'>
                         <div class='VD_content1bKK_icon'>
@@ -800,6 +803,10 @@ font-weight: 600;
                         </div>
                       </div>
                   </div>
+                  
+
+                  
+                  
                 </div>
             </div>
         </div>
@@ -903,8 +910,8 @@ font-weight: 600;
 
             
             root.style.setProperty('--heso-cotcontent',1);
-            root.style.setProperty('--display-content1','block');
-        	root.style.setProperty('--display-content2','none');
+            root.style.setProperty('--display-content1','none');
+        	root.style.setProperty('--display-content2','block');
         	root.style.setProperty('--display-content3','none');
             
           if(w>=h) {
