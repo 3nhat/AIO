@@ -8,7 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://3nhat.github.io/JS/swiped-events.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 	<style>
     :root{
@@ -209,16 +209,17 @@ font-size: calc(var(--width-content)/30);
 font-weight: 600;
 }
 
-.content1b, .content3b{
+.content1b, .content2b{
 	overflow-y: scroll;
     overflow-x: hidden;
     
 
 }
 
-.khung1{
+.khung1, .khung2{
 	display: flex;
     flex-wrap: wrap;
+    
 }
 
 .content1bK{
@@ -316,6 +317,26 @@ font-weight: 600;
   
   
   .VD_content1bKKc, .VD_content1bKKd {display: var(--display-content-phu);}
+  
+  
+  .VD_content1bKK_icon {
+  
+    width: calc(var(--width-content)/3 - 10*var(--size-standard)/40);
+    padding-left: calc(var(--size-standard)/40);
+	padding-right: calc(var(--size-standard)/40);
+    
+}
+  .icon1 {
+  	font-size: 3em;
+  }
+  
+  .icon1Text1, .icon1Text2 {
+  	width: 100%;
+  	font-size: 1em;
+  }
+  .icon1Text2 {
+  	margin-top: calc(-1.5 * var(--thietbi) * var(--size-standard)/40);
+  }
 
  .coin {
 	 /*font-size: 200px;*/
@@ -654,8 +675,60 @@ font-weight: 600;
                     </span>
             	</div>
             </div>
-            <div class='content2b'>
-            
+            <div class='content2b' id='content2b' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
+            	<div class='khung2'>
+                	<div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack' style='width: 100%'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack' style='width: 100%'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack' style='width: 100%'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack' style='width: 100%'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                </div>
             </div>
         </div>
         <div class='content3' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
@@ -841,7 +914,7 @@ font-weight: 600;
     
     function testthunghiem() {
     	var d = root.style.getPropertyValue('--display-content-phu');
-        var dis = (d=='flex') ? 'none' : 'flex';
+        var dis = (d=='flex' || d=='') ? 'none' : 'flex';
         root.style.setProperty('--display-content-phu',dis);
     }
     
