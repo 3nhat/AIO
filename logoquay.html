@@ -29,7 +29,7 @@
         --heso-cotcontent : 3;
         --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
         
-        --hesoContent1 : 1.1;
+        --hesoContent1 : 2;
         --hesoContent2 : 5;
     
     }
@@ -208,7 +208,7 @@ body, .content, .content1, .content2, .content3 {
 }
 
 .content1b, .content2b, .content3b *{
-font-size: calc(var(--width-content)/(30 * var(--hesoContent1)));
+font-size: calc(var(--width-content)/(30 * (1 + 0.1*var(--hesoContent1)/var(--thietbi))));
 font-weight: 600;
 }
 
@@ -301,7 +301,7 @@ font-weight: 600;
     padding-right: calc(var(--size-standard)/40);
     font-size: 1em;
     text-align: justify;
-    font-size: calc(var(--width-content)/(30 * var(--hesoContent1)));
+    font-size: calc(var(--width-content)/(30 * (1 + 0.1*var(--hesoContent1)/var(--thietbi))));
     border-top: 0.5px green solid;
     
 }
