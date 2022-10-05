@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3 Nhất Group</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://3nhat.github.io/JS/swiped-events.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+	<style>
+    :root{
+    	--x: 8s;
+        
+        --thietbi: 1; /*mobile (dọc): 2; laptop + mobile(ngang): 0.33*/
+        --size-standard: 25vw;
+        --display-ngang: none;
+        --display-doc: block;
+        --display-content1: block;
+        --display-content2: block;
+        --display-content3: block;
+        
+        --display-content-phu: flex;
+
+        --height-content: calc(var(--vh, 1vh) * 100 - var(--size-standard)/4 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - var(--size-standard) - var(--size-standard)/4 - 2 * 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * var(--size-standard)/40 - 2 * 2 * var(--size-standard)/40 - 1.5 * 2 * var(--size-standard)/40);
+        
+        --heso-cotcontent : 3;
+        --width-content: calc(100vw / var(--heso-cotcontent) - 6 * var(--size-standard)/40);
+        
+        --hesoContent1 : 2;
+        --hesoContent2 : 5;
+    
+    }
+
+html, body {
+
+	 width: 100vw;
+	 height: 100vh;
+	 padding: 0;
+	 margin: 0;
+}
+
+body, .content, .content1, .content2, .content3 { 
+        	overflow: hidden;	
+
+        }
+        body::-webkit-scrollbar, .content::-webkit-scrollbar, .content1::-webkit-scrollbar, .content2::-webkit-scrollbar, .content3::-webkit-scrollbar { display: none;}
+		body, .content, .content1, .content2, .content3 { -ms-overflow-style: none; scrollbar-width: none; }
+        
+          body{
+      -webkit-touch-callout: none; 
+      -webkit-user-select: none; 
+      -khtml-user-select: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none;
+
+      overscroll-behavior-y: contain;
+  }
+  
+  
+  *{
+      touch-action: manipulation;
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+  }
+		
+
+
+
+.ngang {
+	display: var(--display-ngang);
+    height: 100vh;
+    width: 80vw;
+
+  	align-items: center;
+    justify-content: center;
+    padding: 0 10vw 0 10vw;
+    
+    background: orange;
+    z-index: 100;
+    font-size: calc(var(--size-standard)/4);
+}
+
+.ngang p {
+	width: 80vw;
+    text-align: center;
+    font-weight: 900;
+}
+.doc {
+    z-index: 99;
+    display: var(--display-doc);
+}
+
+.header1{
+	width: calc(100vw - 6 * var(--size-standard)/40);
+    margin: calc(var(--size-standard)/40);
+    padding: calc(2 * var(--size-standard)/40);
+    height: calc(var(--size-standard)/4);
+    font-size: calc(var(--size-standard)/4);
+	text-align: center;
+    font-weight: 900;
+    background: blue;
+    color: white;
+    border-radius: calc(3 * var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header2{
+	display: flex;
+  	flex-direction: row;
+    margin-top: calc(2 * var(--size-standard)/40);
+}
+.header2_1{
+	height: var(--size-standard);
+    width: var(--size-standard);
+    padding: calc(2 * var(--size-standard)/40);
+}
+.header2_2{
+	height: var(--size-standard);
+    width: calc(100vw - var(--size-standard) - 6 * var(--size-standard)/40);
+    border-radius: calc(3 * var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header3{
+	/*width: calc(100vw - 6 * var(--size-standard)/40);*/
+    margin: calc(var(--size-standard)/40);
+    padding: calc(var(--size-standard)/80);
+
+    font-size: calc(var(--size-standard)/8);
+	text-align: center;
+    font-weight: 900;
+    
+    color: white;
+    display: flex;
+  	flex-direction: row;
+}
+.header3_1, .header3_3{
+	width: calc(var(--size-standard)/4);
+    height: calc(var(--size-standard)/4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header3_2{
+	width: calc(100vw - 2 * var(--size-standard)/4);
+    height: calc(var(--size-standard)/4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: orange;
+
+}
+.header3_2 p {
+	text-align: center;
+	width: 100%;
+
+}
+
+.content{
+	/*width: calc(100vw - 6 * var(--size-standard)/40);*/
+	display: flex;
+    flex-direction: row;
+    
+}
+.content1, .content2, .content3{
+	width: var(--width-content);
+	margin: calc(var(--size-standard)/40);
+    padding: calc(2 * var(--size-standard)/40);
+    height: var(--height-content);
+
+}
+.content1{ display: var(--display-content1);}
+.content2{ display: var(--display-content2);}
+.content3{ display: var(--display-content3);}
+
+.content1a, .content2a, .content3a{
+	width: var(--width-content);
+    display: flex;
+  	flex-direction: row;
+}
+
+.content1a div, .content2a div, .content3a div{
+	height: calc(var(--size-standard)/2);
+    width: calc(var(--size-standard)/2);
+    margin-left: calc(2* var(--size-standard)/40);
+	margin-right: calc(2* var(--size-standard)/40);
+    font-size: calc(var(--size-standard)/6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content1b, .content2b, .content3b{
+	width: var(--width-content);
+    height: calc(var(--height-content) - var(--size-standard)/2);
+	
+
+    border-radius: calc(3 * var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    font-size: calc(var(--width-content)/(30 * (1 + 0.1*var(--hesoContent1)/var(--thietbi))));
+	font-weight: 600;
+}
+
+.content1b, .content2b{
+	overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.khung1, .khung2{
+	display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.content1bK{
+	display: flex;
+    flex-wrap: wrap;
+  	/*flex-direction: row;*/
+    /*align-items: center;*/
+    justify-content: left;
+    margin-top: calc(4*var(--size-standard)/40);
+    margin-left: calc(2*var(--size-standard)/40);
+    
+    flex: calc(var(--width-content)/var(--hesoContent2) - 4*var(--size-standard)/40);
+}
+
+
+.content1bKK{
+	display: flex;
+    flex-wrap: wrap;
+  	/*flex-direction: row;*/
+    /*align-items: center;*/
+    justify-content: left;
+    border-radius: calc(var(--size-standard)/40);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-right: calc(2*var(--size-standard)/40);
+    
+    
+}
+.VD_content1bKK {
+  
+	
+    width: calc(var(--width-content)/4 - 10*var(--size-standard)/40);
+    
+	
+	margin-left: calc(var(--size-standard)/80);
+
+    padding-left: calc(var(--size-standard)/40);
+	padding-right: calc(var(--size-standard)/40);
+    
+}
+
+.VD_content1bKKa{
+	border-radius: calc(var(--size-standard)/40);
+	border: 0.5px solid;
+    text-align: center;
+}
+.VD_content1bKKb{
+	margin-top: calc(1*var(--size-standard)/40);
+    margin-left: calc(var(--size-standard)/40);
+    text-align: center;
+}
+.VD_content1bKKb2{
+	margin-top: calc(3*var(--size-standard)/40);
+    margin-left: calc(var(--size-standard)/40);
+    text-align: center;
+    margin-top: calc(-1 * var(--thietbi) * var(--size-standard)/40);
+}
+.VD_content1bKKc{
+	width: calc(3*(var(--width-content)/4 - 3*var(--size-standard)/40));
+    display: flex;
+    flex-wrap: wrap;
+}
+.VD_content1bKKc1{
+	width: calc(3*(var(--width-content)/4 - 3*var(--size-standard)/40));
+    font-style: italic;
+}
+
+.VD_content1bKKc2{
+	margin-top: calc(-0.3 * var(--thietbi) * var(--size-standard)/40);
+	width: calc(3*(var(--width-content)/4 - 4*var(--size-standard)/40));
+}
+
+.VD_content1bKKd {
+	width: calc(var(--width-content) - 18*var(--size-standard)/40);
+	margin: calc(var(--size-standard)/40);
+    padding-left: calc(var(--size-standard)/40);
+    padding-right: calc(var(--size-standard)/40);
+    font-size: 1em;
+    text-align: justify;
+    font-size: calc(var(--width-content)/(30 * (1 + 0.1*var(--hesoContent1)/var(--thietbi))));
+    border-top: 0.5px green solid;
+    
+}
+
+.VD_content1bKKd a{
+	/*text-decoration: underline;*/
+    margin-right: calc(4*var(--size-standard)/40);
+}
+
+.content1bK:nth-child(5n+1) .content1bKK {
+    background: rgb(230, 255, 242);
+  }
+
+  .content1bK:nth-child(5n+2) .content1bKK {
+    background: rgb(230, 230, 255);
+  }
+  
+  .content1bK:nth-child(5n+3) .content1bKK {
+    background: rgb(255, 230, 255)
+   }
+   
+   .content1bK:nth-child(5n+4) .content1bKK {
+    background: rgb(255, 230, 230)
+   }
+   
+   .content1bK:nth-child(5n+5) .content1bKK {
+    background: rgb(255, 247, 230)
+   }
+  
+  .VD_content1bKKc, .VD_content1bKKd {display: var(--display-content-phu);}
+  
+  
+  .VD_content1bKK_icon {
+  
+    width: calc(var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40);
+	padding-left: calc(var(--size-standard)/40);
+	padding-right: calc(var(--size-standard)/40);
+    
+}
+  .icon1 {
+  	width: 100%;
+    /*
+  	font-size: 2.8em;
+    */
+    font-size: calc((var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40)/2);
+  }
+  
+  .icon1Text1, .icon1Text2 {
+  	width: 100%;
+  	/*font-size: 1em;*/
+    font-size: calc((var(--width-content)/var(--hesoContent2) - 10*var(--size-standard)/40)/6);
+  }
+  .icon1Text2 {
+  	margin-top: calc(-3 * var(--thietbi) * var(--size-standard)/50);
+  }
+	
+/* Phần dành cho logo */
+	.logo {
+	 	/*font-size: 200px;*/
+     	font-size: var(--size-standard);
+	 	width: 0.1em;
+	 	height: 1em;
+	 	background: linear-gradient(#8d0213, #000);
+	 	margin: auto;
+	 	animation: rotateLogo var(--x) infinite linear;
+	 	transform-style: preserve-3d;
+	}
+ 	.logo .logoside, .logo:before, .logo:after {
+	 	content: "";
+	 	position: absolute;
+	 	width: 1em;
+	 	height: 1em;
+	 	overflow: hidden;
+	 	background: #bf031a;
+	 	border-radius: 50%;
+	 	right: -0.396em;
+	 	text-align: center;
+	 	line-height: 1;
+	 	color: #bf031a;
+	 	text-shadow: 1px 2px 0 #7a0413, -1px -2px 0 #460416;
+	 	transform: rotateY(-90deg);
+	 	backface-visibility: hidden;
+	}
+ 	.logo .logotails, .logo:after {
+	 	left: -0.396em;
+	 	transform: rotateY(90deg);
+	}
+ 	.logo:before, .logo:after {
+	 	background: linear-gradient(#8d0213, #000);
+	 	backface-visibility: hidden;
+	 	transform: rotateY(90deg);
+	}
+ 	.logo:after {
+	 	transform: rotateY(-90deg);
+	}
+ 	.imageLogo1, .imageLogo2 {
+  		background-size: contain;
+  		position: absolute;
+  		top: 50%;	left: 50%;
+		transform: translate(-50%, -50%);
+  		background-position: center;
+  		background-repeat: no-repeat;
+  		height: 100%;
+  		width: 100%;
+	}
+
+ 	.imageLogo1 {
+    	/*background-color: #bf031a;*/
+     	background-color: white;
+    	background-image: url('https://3nhat.github.io/Image/3nhatgroup.com2.png');
+    }
+    
+ 	.imageLogo2 {
+	 	/*background-color: #bf031a;*/
+     	background-color: white;
+     	animation: 
+            changeLogo2 calc(12*var(--x)/2) infinite linear 0s;
+            /*3:3; 4:8; 5:10; 6:12*/
+	}
+     
+ 	@keyframes rotateLogo {
+	 	100% {
+		 	transform: rotateY(360deg);
+		}
+	}
+
+	@keyframes changeLogo2 {
+     	0%,16.66% {
+            background-image: url('https://i.ibb.co/w0M0NjP/3.png');
+       	}
+    	16.67%,33.32% {
+            background-image: url('https://i.ibb.co/n7k3p0X/2.png');
+      	}
+    	33.33%,49.98% {
+            background-image: url('https://i.ibb.co/gmzSqzG/1.png');
+    	}
+		
+    	49.99%, 66.64% {
+            background-image: url('https://3nhat.github.io/Image/user.jpg');
+    	}
+   		66.65%, 83.30% {
+            background-image: url('https://tickera-wpsalad.netdna-ssl.com/wp-content/themes/tickera/style/img/freebies/icons/events/77.png?x46941');
+     	} 
+     	83.31%, 100% {
+            background-image: url('https://3nhat.github.io/Image/user.jpg');
+		}
+	}
+
+/* Phần dành cho logo */ 
+
+
+
+
+.header {
+	width: 100%;
+    overflow: hidden;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+	<div class='ngang' id='ngang'></div>
+	<div id="container_loader">
+	  	<div class="main_loader" >
+        	<div class="loader" onclick="EID('container_loader').style.display = 'none'"></div>
+	  	</div>
+	</div>
+	<div class='doc'>
+		<div class='header'>
+    		<div class='header1'>Công ty cổ phần tập đoàn 3 Nhất</div>
+        	<div class='header2'>
+        		<div class='header2_1'>
+            		<div class='logo'>
+                  		<div class='logoside logoheads'><img class='imageLogo1'></div>
+                  		<div class='logoside logotails'><img class='imageLogo2'></div>
+                	</div>
+            	</div>
+            	<div class='header2_2'>
+            		<!--dành cho quảng cáo-->
+            	</div>
+        	</div>
+        	<div class='header3'>
+        		<div class='header3_1'>
+              		<span class="fa-stack">
+                  		<i id='back' class="fa fa-chevron-left fa-stack-2x" style="color: red"></i>
+                	</span>
+
+            	</div>
+            	<div class='header3_2'>Thông tin chạy</div>
+            	<div class='header3_3'>
+					<span class="fa-stack">
+                  		<i id='next' class="fa fa-chevron-right fa-stack-2x" style="color: blue"></i>
+                	</span>
+            	</div>
+        	
+        	</div>
+    	</div>
+        
+    	<div class='content'>
+    		<div class='content1'>
+        		<div id='content1a' class='content1a'>
+            		<div>
+                		<span class="fa-stack fa-2x">
+                			<i class="fa fa-list" style="color: blue" onclick='testthunghiem()'></i>
+                    	</span>
+            		</div>
+                	<div>
+                		<span class="fa-stack fa-2x">
+                    		<i class="fa fa-plus-square" style="color: red"></i>
+                    	</span>
+            		</div>
+            	</div>
+                
+            	<div class='content1b' id='content1b' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
+            	<div class='khung1'>
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK'>
+                          <div class='VD_content1bKKa'>234567Q</div>
+                          <div class='VD_content1bKKb'>Phát + 1</div>
+                          <div class='VD_content1bKKb2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+                        <div class='VD_content1bKKc'>
+                          <div class='VD_content1bKKc1'>Hàng thịt cá đông lạnh</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKK'>22/02/2022</div>
+                          <div class='VD_content1bKKc2'>
+                              <progress min='0' max='100' value='80' style= 'accent-color: #30cc7e; place-self: center; width: clamp(100%, 60%, 100%);'></progress>
+                          </div>
+                        </div>
+
+                        <div class='VD_content1bKKd'>
+                          <a>Người Gửi:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Ghi chú:</a> (Khai giá) (đồng kiểm) (báo phát) (Dễ vỡ) (Phát trước 17h30)
+                        </div>
+                        <div class='VD_content1bKKd'>
+                          <a>Người Nhận:</a> (987654321.84) (U234567Q) (Công ty xyz) (1/37, Hoàng Việt, PH.04, QU.TÂN BÌNH, TP.HỒ CHÍ MINH)
+                        </div>
+                      </div>
+                  </div>
+                
+                </div>
+                
+            </div>
+        </div>
+        <div class='content2' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
+        	<div class='content2a'>
+            	<div class='content2a1'>
+                	<span class="fa-stack fa-2x">
+                		<i class="fa fa-list" style="color: blue"></i>
+                    </span>
+            	</div>
+                <div class='content2a2'>
+                	<span class="fa-stack fa-2x">
+                    	<i class="fa fa-plus-square" style="color: red"></i>
+                    </span>
+            	</div>
+            </div>
+            <div class='content2b' id='content2b' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
+            	<div class='khung2'>
+                	<div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+				  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class='content1bK'>
+                      <div class='content1bKK'>
+                        <div class='VD_content1bKK_icon'>
+                          <span class='icon1 fa-stack'>
+                            <i class='fa-regular fa-square fa-spin fa-stack-2x' style='animation-duration: 10s;'></i>
+                            <i class='fa-solid fa-truck-fast fa-beat fa-stack-1x' style='--fa-beat-scale: 1.2;'></i>
+                          </span>
+                          <span class='fa-stack icon1Text1'>
+                            <i class='fa-stack-1x'>Quang</i>
+                          </span>
+                          <span class='fa-stack icon1Text2'>
+                            <i class='fa-stack-1x'>Thu</i>
+                          </span>
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+
+                  
+                  
+                </div>
+            </div>
+        </div>
+        <div class='content3' data-swipe-threshold="20" data-swipe-timeout="500" data-swipe-ignore="false">
+        	<div class='content3a'>
+            	<div class='content3a1'>
+                	<span class="fa-stack fa-2x">
+                		<i class="fa fa-list" style="color: blue"></i>
+                    </span>
+            	</div>
+                <div class='content3a2'>
+                	<span class="fa-stack fa-2x">
+                    	<i class="fa fa-plus-square" style="color: red"></i>
+                    </span>
+            	</div>
+            </div>
+            <div class='content3b'>
+            	
+            </div>
+        </div>
+    </div>
+	
+</div>
+
+<script>
+	function EID(NameID) {return document.getElementById(NameID);}
+    
+	function Qtimthietbi(){
+    	const toMatch = [
+          /Android/i,
+          /webOS/i,
+          /iPhone/i,
+          /iPad/i,
+          /iPod/i,
+          /BlackBerry/i,
+          /Windows Phone/i
+     	];
+        window.thietbi = toMatch.some((toMatchItem) => { return navigator.userAgent.match(toMatchItem); });
+        
+        window.root = document.querySelector(':root');
+    }
+    console.log = function(msg){
+		var arr = msg.split("]QQQ[");
+		obj = JSON.stringify(arr[0]); console.clear();
+		if (arr[1] != "") { window[arr[2]](obj); }
+	}
+    
+    
+    function Qresize(){
+    	let vh = window.innerHeight * 0.01;
+    	document.documentElement.style.setProperty('--vh', `${vh}px`);
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        
+        if (thietbi == false) {
+        	root.style.setProperty('--heso-cotcontent',3);
+			root.style.setProperty('--thietbi',1);
+            if(w>401) {
+            	root.style.setProperty('--size-standard','100px');
+            } else {
+            	root.style.setProperty('--size-standard','25vw');
+            }
+            
+            if (w>400 && w<720){
+            	root.style.setProperty('--display-ngang','flex');
+                root.style.setProperty('--display-doc','none');
+                var nd = '<p>Máy tính có khung làm việc quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 720px - cao: 480px</p>'
+            } 
+            if (w<240){
+            	root.style.setProperty('--display-ngang','flex');
+                root.style.setProperty('--display-doc','none');
+                var nd = '<p>Thiết bị có quá nhỏ quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 240px - 400px<br>cao: 480px - 800px</p>';
+            } 
+            if (w>=240 && w<=400){
+            	if(h>=1.5*w) {
+                  root.style.setProperty('--display-ngang','none');
+                  root.style.setProperty('--display-doc','block');
+                  var nd='';
+                } else {
+                	root.style.setProperty('--display-ngang','flex');
+                    root.style.setProperty('--display-doc','none');
+                    var nd = '<p>Thiết bị có quá nhỏ quá nhỏ để hiện thị đầy dủ nội dung.<br><br>Kích thước tối thiểu là:<br>rộng: 240px - 400px<br>cao: 480px - 800px</p>';
+                }
+                
+                root.style.setProperty('--heso-cotcontent',1);
+                root.style.setProperty('--display-content1','block');
+                root.style.setProperty('--display-content2','none');
+                root.style.setProperty('--display-content3','none');
+
+            }
+            if(w>=720){
+            	root.style.setProperty('--display-ngang','none');
+                root.style.setProperty('--display-doc','block');
+                
+                root.style.setProperty('--display-content1','block');
+                root.style.setProperty('--display-content2','block');
+                root.style.setProperty('--display-content3','block');
+            }
+            
+            EID('ngang').innerHTML = nd;
+        	
+			
+            
+            
+        } else {
+
+            
+            root.style.setProperty('--heso-cotcontent',1);
+            root.style.setProperty('--display-content1','block');
+        	root.style.setProperty('--display-content2','none');
+        	root.style.setProperty('--display-content3','none');
+            
+          if(w>=h) {
+             root.style.setProperty('--display-ngang','flex');
+             root.style.setProperty('--display-doc','none');
+             var nd = '<p>Chương trình không được thiết kế để hoạt động theo chiều ngang của thiết bị</p>';
+          } else {
+          	root.style.setProperty('--thietbi',2);
+            root.style.setProperty('--display-ngang','none');
+            root.style.setProperty('--display-doc','block');
+            root.style.setProperty('--size-standard','200px');
+            var nd = '';
+          }
+        	
+          EID('ngang').innerHTML = nd;
+        }
+        
+        
+    	
+  
+    }
+    
+    
+    
+	window.addEventListener('resize', () => {
+      Qresize()
+    });
+    
+    window.addEventListener("contextmenu", function(e) {
+          e.preventDefault();
+     }, false);
+     window.addEventListener("keydown", function(e) {
+          if (e.ctrlKey || e.keyCode==123) {
+               e.stopPropagation();
+               e.preventDefault();
+          }
+     }); 
+     window.addEventListener("touchstart", function(e) {
+          if(e.touches.length > 1){
+               e.preventDefault();
+          }
+     },{passive: false});
+    
+    
+    
+    //document.addEventListener('swiped-left', function(e) {
+	EID('content1b').addEventListener('swiped-left', function(e) {
+  		//alert(e.target.className); // element that was swiped
+  		//alert(e.detail); // see event data below
+	});
+    //document.addEventListener('swiped-right', function(e) {
+  	EID('content1b').addEventListener('swiped-right', function(e) {	
+	alert(e.target.className); // element that was swiped
+  		//alert(e.detail); // see event data below
+	});
+    
+        
+    function Qbatdau(){
+    	function preventPullToRefresh(element) {
+          var prevent = false;
+             document.querySelector(element).addEventListener('touchstart', function(e) {
+                  if (e.touches.length !== 1) {
+                       return;
+                  }
+                  var scrollY = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+                  prevent = (scrollY === 0);
+             });
+             document.querySelector(element).addEventListener('touchmove', function(e) {
+                  if (prevent) {
+                       prevent = false;
+                       e.preventDefault();
+                  }
+             });
+        }
+    	preventPullToRefresh('html');
+        
+    	Qtimthietbi();
+        Qresize();
+    }
+    
+    window.addEventListener('DOMContentLoaded', (event) => { Qbatdau(); });
+    
+    
+    function testthunghiem() {
+    	var d = root.style.getPropertyValue('--display-content-phu');
+        var dis = (d=='flex' || d=='') ? 'none' : 'flex';
+        root.style.setProperty('--display-content-phu',dis);
+    }
+    
+</script>
+
+
+</body>
+</html>
