@@ -29,7 +29,7 @@ function T(exp){
         }); 
         */
         .then(x => x.text())
-        .then(y => postMessage([exp[0],y));
+        .then(y => postMessage([exp[0],y]));
         
     }
     
