@@ -8,7 +8,7 @@ function T(exp){
         var URL = 'https://script.google.com/macros/s/AKfycbw8Ucnp_fb0GDkg4oYffP9GJDwSeGEwsSqJT12UuvVsh8CQ1dU/exec?P=Express&para1=F001&para2=none]QQQ[func]QQQ[' + arrFunc[i];
             URL="https://docs.google.com/feeds/download/documents/export/Export?id=1XpfiX288y98rw3B_xLDs2ybCrrTsubXcytjoXM0dezU&exportFormat=txt";
     */
-        fetch(exp[1])
+        fetch(exp)
         /*
         .then(function (response){
             return response.json();
@@ -29,7 +29,7 @@ function T(exp){
         }); 
         */
         .then(x => x.text())
-        .then(y => postMessage([exp[0],y]));
+        .then(y => postMessage(y));
         
     }
     
