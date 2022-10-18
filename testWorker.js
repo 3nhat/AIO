@@ -37,7 +37,7 @@ function T(exp){
  
     
 }
-function Q(a) { self.addEventListener('message', function(e) { var x=T(e.data); }, false); } 
+function Q(a) { self.addEventListener('message', function(e) {  postMessage(e.data) /*var x=T(e.data);*/ }, false); } 
 
 
 
