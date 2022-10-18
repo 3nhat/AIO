@@ -5,6 +5,8 @@
 </head>
 <body>
 	<p id="demo" onclick="myFunction()">Click me.</p>
+	
+	<button onclick="myFunction1()">Click me</button>
 
 <script>
 	
@@ -74,8 +76,14 @@
     }
     
     window.window['Func_Run02a'] = function(x5){
-	alert(window[x5]);   
+	    this['Quang'] = new Function('return ' + y)();
+		//alert(window[x5]);   
     }
+	
+function myFunction1(){
+	var a=window['Quang'](2,3);
+    alert(a);
+}
     
     test();
 	
