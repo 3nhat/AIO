@@ -71,12 +71,12 @@
         
         if(x0=='1') startWorker();
         if(x0=='0') stopWorker();
-        if(x0=='2') window[x1].postMessage(['none',x6]);
+        if(x0=='2') window[x1].postMessage(x6);
 
     }
     
     window.window['Func_Run02a'] = function(x5){
-	    //this['Quang'] = new Function('return ' + window[x5][1])();
+	    this['Quang'] = new Function('return ' + window[x5])();
 		alert(window[x5]);   
     }
 	
