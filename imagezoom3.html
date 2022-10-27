@@ -96,6 +96,10 @@ zoomElm.addEventListener('change', function(e){
   showZoomOutput();
 });
 
+window.addEventListener("contextmenu", function(e) {
+		e.preventDefault();
+	}, false);
+
 function showZoomOutput() {
   outputElm.innerText = 'x' + zoomElm.value;
 }
@@ -107,6 +111,37 @@ var sub_width = 0;
 var sub_height = 0;
 var mx, my;
 
+$('.zoom-area').bind('mousemove touchstart touchmove touchend', function(e) {
+  e.preventDefault();
+  if(e.type == 'touchstart') {
+    
+  } else if(e.type == 'touchmove' || e.type == 'mousemove') {
+    if (!sub_width && !sub_height) {
+      var image_object = new Image();
+      image_object.src = $(".small").attr("src");
+      sub_width = image_object.width;
+      sub_height = image_object.height;
+    } else {
+      var magnify_position = $(this).offset();
+      // console.log(magnify_position);
+      mx = e.pageX - magnify_position.left;
+      my = e.pageY - magnify_position.top;
+
+      if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
+        $(".large").fadeIn(100);
+      } else {
+        $(".large").fadeOut(100);
+      }
+      if ($(".large").is(":visible")) {
+        applyZoom();
+      }
+    }
+  } else if(e.type == 'touchend') {
+    // some code
+  }
+});
+
+/*
 $('.zoom-area').bind('mousemove touchmove', function(e) {
 //$(".zoom-area").mousemove(function(e){
   if (!sub_width && !sub_height) {
@@ -131,7 +166,7 @@ $('.zoom-area').bind('mousemove touchmove', function(e) {
   }
 });
 
-
+*/
 
 
 
