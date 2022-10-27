@@ -46,19 +46,13 @@ img {
 </style>
 </head>
 <body>
-
-  <img height="750" src="http://farm6.staticflickr.com/5474/9765019294_91f9710e92_b_d.jpg"/>
+<div style='margin-left: 100px'>
+  <img height="750" src="http://farm6.staticflickr.com/5474/9765019294_91f9710e92_b_d.jpg"/></div>
   <div id="zoom"></div>
 
 
 <script>
-	
-	window.addEventListener("contextmenu", function(e) {
-		e.preventDefault();
-	}, false);
-	
-	
-	(function() {
+
   var zoom = document.getElementById( 'zoom' ),
       Zw = zoom.offsetWidth,
       Zh = zoom.offsetHeight,
@@ -89,23 +83,65 @@ img {
   }
   
   function onMousemove( e ) {
+  	/*
+    let posX, posY, touch = false;
+	
+	if (e.touches) {
+		posX = e.touches[0].clientX;
+		posY = e.touches[0].clientY;
+		touch = true;
+	} else {
+		posX = e.clientX;
+		posY = e.clientY;
+	}
+	*/
+    
+  
     clearTimeout( timeout );
     activate();
     updateMagnifier( e.x, e.y );
+    
     timeout = setTimeout( deactivate, 2500 );
   }
   
   function onMouseleave () {
     deactivate();
   }
+  
+  
+  function onOver( e ) {
+  	let posX, posY, touch = false;
+	
+	if (e.touches) {
+		posX = e.touches[0].clientX;
+		posY = e.touches[0].clientY;
+		touch = true;
+	} else {
+		posX = e.clientX;
+		posY = e.clientY;
+	}
+	
+	touch
+		? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
+		: zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
+	zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
+  }
 
   img.addEventListener( 'load', onLoad );
-  img.addEventListener( 'mousemove', onMousemove );
-  img.addEventListener( 'touchstart', onMousemove );
-  img.addEventListener( 'touchmove', onMousemove );
-  img.addEventListener( 'mouseleave', onMouseleave );
+  
 
-})();
+  
+  img.addEventListener( 'mousemove', onMousemove );
+  img.addEventListener( 'touchmove', onMousemove );
+  
+  img.addEventListener( 'mouseleave', onMouseleave );
+  img.addEventListener('mouseout', onMouseleave);
+	img.addEventListener('touchend', onMouseleave);
+  
+  img.addEventListener( 'mouseover', onOver );
+  img.addEventListener( 'touchstart', onOver );
+
+
 </script>
 </body>
 </html>
