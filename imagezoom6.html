@@ -3,6 +3,9 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
+:root {
+	--scale: 1;
+}
 	body {
   overflow: hidden;
   margin: 0;
@@ -10,8 +13,19 @@
   background: #222;
 }
 
+.input-container {
+  text-align: center;
+  margin: 20px auto 20px;
+}
+#zoomOutput {
+  min-width: 40px;
+  display: inline-block;
+  text-align: left;
+}
+
 body.active img {
   -webkit-filter: grayscale(1);
+  
 }
 
 img {
@@ -23,6 +37,7 @@ img {
 }
 
 #zoom {
+	
   position: absolute;
   top: 50%;
   left: 50%;
@@ -41,21 +56,55 @@ img {
 
 .active #zoom {
   opacity: 1;
-  -webkit-transform: scale(1);
+  -webkit-transform: scale(var(--scale));
 }
 </style>
 </head>
 <body>
-<div style='margin-left: 100px'>
+<div class="input-container">
+  <!--  Increase Max Zoom level that you want  -->
+  <input id="zoomInput" type="range" value="1" max="10" min="1" step="0.1" />
+  
+  <p>Zoom Level <span id="zoomOutput"></span> </p>
+  
+</div>
+<div>
   <img height="750" src="http://farm6.staticflickr.com/5474/9765019294_91f9710e92_b_d.jpg"/></div>
   <div id="zoom"></div>
 
 
 <script>
+var xemhinh=true;
+root = document.querySelector(':root');
 
 window.addEventListener("contextmenu", function(e) {
 		e.preventDefault();
 	}, false);
+    
+    const zoomElm = document.getElementById('zoomInput');
+const outputElm = document.getElementById('zoomOutput');
+
+// variable Zoom Power
+var zoomPower = zoomElm.value;
+zoomElm.addEventListener('input', function(e){
+  zoomPower = e.target.value;
+  showZoomOutput();
+});
+zoomElm.addEventListener('change', function(e){
+  // zoomPower = e.target.value;
+  showZoomOutput();
+});
+
+function showZoomOutput() {
+  outputElm.innerText = 'x' + zoomElm.value;
+}
+// show initial Zoom Level
+showZoomOutput();
+
+
+
+
+
     
   var zoom = document.getElementById( 'zoom' ),
       Zw = zoom.offsetWidth,
@@ -74,7 +123,8 @@ window.addEventListener("contextmenu", function(e) {
   }
   
   function updateMagnifier( x, y ) {
-    zoom.style.top = ( y ) + 'px';
+  	zoom.style.top = (y - Iy>Zh) ? ( y - Zw/2) + 'px' : ( y + Zw/2) + 'px';
+    //zoom.style.top = ( y - Zw/2) + 'px';
     zoom.style.left = ( x ) + 'px';
     zoom.style.backgroundPosition = (( Ix - x ) * ratio + Zw / 2 ) + 'px ' + (( Iy - y ) * ratio + Zh / 2 ) + 'px';
   }
@@ -147,6 +197,48 @@ window.addEventListener("contextmenu", function(e) {
   img.addEventListener( 'touchstart', onOver );
 
 
+
+var scrollStatus = {
+  wheeling: false,
+  functionCall: false
+};
+var scrollTimer = false;
+window.addEventListener('wheel', function(event){
+  //if ($(".large").is(":visible")) {
+    var initialZoom = parseFloat(zoomElm.value);
+    scrollStatus.wheeling = true;
+    // console.log('deltaY', event.deltaY);
+    if (!scrollStatus.functionCall) {
+      if (event.deltaY < 0) {
+        // initialZoom ++;
+        // console.log('scrolling up', initialZoom);
+        if (initialZoom < 10 ) {
+          initialZoom = initialZoom + 0.5;
+        }
+      } else if (event.deltaY > 0) {
+        // console.log('scrolling down', initialZoom);
+        // initialZoom --;
+        if (initialZoom > 1 ) {
+          initialZoom = initialZoom - 0.5;
+        }
+      }
+      // console.log('zoom power', initialZoom);
+      zoomElm.value = initialZoom;
+      zoomPower = initialZoom;
+      showZoomOutput();
+      
+      root.style.setProperty('--scale',initialZoom);
+      
+      scrollStatus.functionCall = true;
+    }
+
+    window.clearInterval(scrollTimer);
+    scrollTimer = window.setTimeout(function() {
+      scrollStatus.wheeling = false;
+      scrollStatus.functionCall = false;
+    }, 10); //set this millisecond to your liking
+  //}
+});
 </script>
 </body>
 </html>
