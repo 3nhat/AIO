@@ -53,6 +53,10 @@ img {
 
 <script>
 
+window.addEventListener("contextmenu", function(e) {
+		e.preventDefault();
+	}, false);
+    
   var zoom = document.getElementById( 'zoom' ),
       Zw = zoom.offsetWidth,
       Zh = zoom.offsetHeight,
@@ -83,7 +87,7 @@ img {
   }
   
   function onMousemove( e ) {
-  	/*
+  	
     let posX, posY, touch = false;
 	
 	if (e.touches) {
@@ -94,12 +98,13 @@ img {
 		posX = e.clientX;
 		posY = e.clientY;
 	}
-	*/
+	
     
   
     clearTimeout( timeout );
     activate();
-    updateMagnifier( e.x, e.y );
+    //updateMagnifier( e.x, e.y );
+    updateMagnifier( posX, posY );
     
     timeout = setTimeout( deactivate, 2500 );
   }
