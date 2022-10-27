@@ -2,19 +2,8 @@
 <html>
 <head>
 <style>
-	* {
+* {
   box-sizing: border-box;
-  padding: 10px;
-}
-body {
-  background: #bfb8ad;
-}
-h1 {
-  color: #8a3033;
-  padding: 10px;
-}
-img {
-  border: 5px solid #998888;
 }
 
 .img-magnifier-container {
@@ -23,12 +12,20 @@ img {
 
 .img-magnifier-glass {
   position: absolute;
-  border: 3px solid #8a3033;
-  border-radius: 50%;
+  z-index: 3;
+  border: 1px solid #000;
+  border-radius: 20%;
   cursor: none;
   /*Set the size of the magnifier glass:*/
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 130px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+a:hover .img-magnifier-glass {
+  opacity: 1;
+  pointer-events: initial;
 }
 
 </style>
@@ -37,91 +34,115 @@ img {
 <body>
 
 
-  <h1>STAY HOME</h1>
-  <div class="img-magnifier-container">
-    <img id="myimage" src="https://images.unsplash.com/photo-1586292163072-c86b207110a4" width="600" height="400" alt="ppe">
-  </div>
+<table class="img-magnifier-container" width="115" border="0" cellpadding="0" cellspacing="0" style="display: inline-block">
+  <tr>
+    <td width="115" style="text-align: center">
+      <center>
+        <a href="https://www.imdb.com/title/tt0478970/" title="Ant-Man (2015)" target="_blank"><img width="115" height="133" border="0" class="cover pstrart magnify-image" src="https://images2.static-bluray.com/movies/covers/238380_front.jpg" style=""></a>
+      </center>
+      <center><input type="checkbox" name="movieboxes" value="Ant-Man" style="width: 15px; height: 15px; margin: 0px;">
+        <img title="United Kingdom" border="2" class="flag" src="https://cdn.discordapp.com/attachments/530906893443399683/665554365897244693/union-jack-26119_960_720.png" style="width: 25px; height: 17px;">
+      </center>
+    </td>
+  </tr>
+</table>&nbsp; &nbsp;
+<table class="img-magnifier-container" width="115" border="0" cellpadding="0" cellspacing="0" style="display: inline-block">
+  <tr>
+    <td width="115" style="text-align: center">
+      <center>
+        <a href="https://www.imdb.com/title/tt6644200/" title="A Quiet Place (2018)" target="_blank"><img width="115" height="133" border="0" class="cover pstrart magnify-image" src="https://images2.static-bluray.com/movies/covers/202637_front.jpg" style=""></a>
+      </center>
+      <center><input type="checkbox" name="movieboxes" value="A Quiet Place" style="width: 15px; height: 15px; margin: 0px;">
+        <img title="United Kingdom" border="2" class="flag" src="https://cdn.discordapp.com/attachments/530906893443399683/665554365897244693/union-jack-26119_960_720.png" style="width: 25px; height: 17px;">
+      </center>
+    </td>
+  </tr>
+</table>&nbsp; &nbsp;
 
 <script>
 window.addEventListener("contextmenu", function(e) {
 		e.preventDefault();
 	}, false);
     
-function magnify(imgID, zoom) {
-  var img, glass, w, h, bw;
-  img = document.getElementById(imgID);
-
-  /* Create magnifier glass: */
+// magnify hover
+function magnify(img, zoom) {
+  var glass, w, h, bw;
+  /*create magnifier glass:*/
   glass = document.createElement("DIV");
   glass.setAttribute("class", "img-magnifier-glass");
-
-  /* Insert magnifier glass: */
+  /*insert magnifier glass:*/
   img.parentElement.insertBefore(glass, img);
-
-  /* Set background properties for the magnifier glass: */
+  /*set background properties for the magnifier glass:*/
   glass.style.backgroundImage = "url('" + img.src + "')";
   glass.style.backgroundRepeat = "no-repeat";
-  glass.style.backgroundSize =
-    img.width * zoom + "px " + img.height * zoom + "px";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
   bw = 3;
   w = glass.offsetWidth / 2;
   h = glass.offsetHeight / 2;
-
-  /* Execute a function when someone moves the magnifier glass over the image: */
+  /*execute a function when someone moves the magnifier glass over the image:*/
   glass.addEventListener("mousemove", moveMagnifier);
   img.addEventListener("mousemove", moveMagnifier);
-
   /*and also for touch screens:*/
+  
   glass.addEventListener("touchmove", moveMagnifier);
   img.addEventListener("touchmove", moveMagnifier);
+  
+  glass.addEventListener("touchstart", moveMagnifier);
+  img.addEventListener("touchstart", moveMagnifier);
+
   function moveMagnifier(e) {
     var pos, x, y;
-    /* Prevent any other actions that may occur when moving over the image */
+    /*prevent any other actions that may occur when moving over the image*/
     e.preventDefault();
-    /* Get the cursor's x and y positions: */
+    /*get the cursor's x and y positions:*/
     pos = getCursorPos(e);
     x = pos.x;
     y = pos.y;
-    /* Prevent the magnifier glass from being positioned outside the image: */
-    if (x > img.width - w / zoom) {
-      x = img.width - w / zoom;
+    /*prevent the magnifier glass from being positioned outside the image:*/
+    if (x > img.width - (w / zoom)) {
+      x = img.width - (w / zoom);
     }
     if (x < w / zoom) {
       x = w / zoom;
     }
-    if (y > img.height - h / zoom) {
-      y = img.height - h / zoom;
+    if (y > img.height - (h / zoom)) {
+      y = img.height - (h / zoom);
     }
     if (y < h / zoom) {
       y = h / zoom;
     }
-    /* Set the position of the magnifier glass: */
-    glass.style.left = x - w + "px";
-    glass.style.top = y - h + "px";
-    /* Display what the magnifier glass "sees": */
-    glass.style.backgroundPosition =
-      "-" + (x * zoom - w + bw) + "px -" + (y * zoom - h + bw) + "px";
+    /*set the position of the magnifier glass:*/
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /*display what the magnifier glass "sees":*/
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
   }
 
   function getCursorPos(e) {
-    var a,
-      x = 0,
+    var a, x = 0,
       y = 0;
     e = e || window.event;
-    /* Get the x and y positions of the image: */
+    /*get the x and y positions of the image:*/
     a = img.getBoundingClientRect();
-    /* Calculate the cursor's x and y coordinates, relative to the image: */
+    /*calculate the cursor's x and y coordinates, relative to the image:*/
     x = e.pageX - a.left;
     y = e.pageY - a.top;
-    /* Consider any page scrolling: */
+    /*consider any page scrolling:*/
     x = x - window.pageXOffset;
     y = y - window.pageYOffset;
-    return { x: x, y: y };
+    return {
+      x: x,
+      y: y
+    };
   }
 }
-/* Execute the magnify function: */
-magnify("myimage", 3);
-/* Specify the id of the image, and the strength of the magnifier glass: */
+
+// Iterate through all images you want to magnify
+const images = document.querySelectorAll('.magnify-image');
+Array.from(images).forEach((image) => {
+  
+  magnify(image, 5);
+});
 
 </script>
 
