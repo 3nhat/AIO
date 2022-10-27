@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'helvetica', sans-serif;
+  background-color: #fff;
+}
+h1 {
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+}
+.input-container {
+  text-align: center;
+  margin: 20px auto 20px;
+}
+#zoomOutput {
+  min-width: 40px;
+  display: inline-block;
+  text-align: left;
+}
+
+/* Zoom css */
+.zoom-area
+{
+  width: 500px;
+  max-width: 90%;
+  margin: 50px auto;
+  position: relative;
+  cursor: none
+}
+/* for create magnify glass */
+.large
+{
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  border-radius: 100%;
+
+  /* for box shadow for glass effect */
+  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+    0 0 7px 7px rgba(0, 0, 0, 0.25), 
+    inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+
+  /*for hide the glass by default*/
+  display: none;
+}
+.small
+{
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<h1>Scroll up and Down over an Image to Zoom in/out</h1>
+<div class="input-container">
+  <!--  Increase Max Zoom level that you want  -->
+  <input id="zoomInput" type="range" value="1" max="10" min="1" step="0.1" />
+  
+  <p>Zoom Level <span id="zoomOutput"></span> </p>
+  
+</div>
+
+<!-- Created by Rohan Hapani -->
+<div class="zoom-area">
+		
+		<!-- It's container of the magnify glass -->
+		<div class="large"></div>
+		
+		<!-- It's for the small image -->
+		<img class="small" src="https://images.pexels.com/photos/3532326/pexels-photo-3532326.jpeg" style="width: 100%" />
+		
+	</div>
+
+<script>
+	const zoomElm = document.getElementById('zoomInput');
+const outputElm = document.getElementById('zoomOutput');
+
+// variable Zoom Power
+var zoomPower = zoomElm.value;
+zoomElm.addEventListener('input', function(e){
+  zoomPower = e.target.value;
+  showZoomOutput();
+});
+zoomElm.addEventListener('change', function(e){
+  // zoomPower = e.target.value;
+  showZoomOutput();
+});
+
+function showZoomOutput() {
+  outputElm.innerText = 'x' + zoomElm.value;
+}
+// show initial Zoom Level
+showZoomOutput();
+
+// magnifying logic
+var sub_width = 0;
+var sub_height = 0;
+var mx, my;
+
+$('.zoom-area').bind('mousemove touchmove', function(e) {
+//$(".zoom-area").mousemove(function(e){
+  if (!sub_width && !sub_height) {
+    var image_object = new Image();
+    image_object.src = $(".small").attr("src");
+    sub_width = image_object.width;
+    sub_height = image_object.height;
+  } else {
+    var magnify_position = $(this).offset();
+    // console.log(magnify_position);
+    mx = e.pageX - magnify_position.left;
+    my = e.pageY - magnify_position.top;
+
+    if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
+      $(".large").fadeIn(100);
+    } else {
+      $(".large").fadeOut(100);
+    }
+    if ($(".large").is(":visible")) {
+      applyZoom();
+    }
+  }
+});
+
+
+
+
+
+function applyZoom() {
+  $(".large").css("background","url('" + $(".small").attr("src") + "') no-repeat");
+  $(".large").css("background-size", $(".small").width()*zoomPower + 'px' + ' ' + $(".small").height()*zoomPower + 'px');
+  var rx = Math.round(mx/$(".small").width()*$(".small").width()*zoomPower - $(".large").width()/2)*-1;
+  var ry = Math.round(my/$(".small").height()*$(".small").height()*zoomPower - $(".large").height()/2)*-1;
+
+  var bgp = rx + "px " + ry + "px";
+
+  var px = mx - $(".large").width()/2;
+  var py = my - $(".large").height()/2;
+
+  $(".large").css({left: px, top: py, backgroundPosition: bgp});
+}
+
+// Experimental Zoom in/ Zoom out on wheel scroll
+var scrollStatus = {
+  wheeling: false,
+  functionCall: false
+};
+var scrollTimer = false;
+window.addEventListener('wheel', function(event){
+  if ($(".large").is(":visible")) {
+    var initialZoom = parseFloat(zoomElm.value);
+    scrollStatus.wheeling = true;
+    // console.log('deltaY', event.deltaY);
+    if (!scrollStatus.functionCall) {
+      if (event.deltaY < 0) {
+        // initialZoom ++;
+        // console.log('scrolling up', initialZoom);
+        if (initialZoom < 10 ) {
+          initialZoom = initialZoom + 0.5;
+        }
+      } else if (event.deltaY > 0) {
+        // console.log('scrolling down', initialZoom);
+        // initialZoom --;
+        if (initialZoom > 1 ) {
+          initialZoom = initialZoom - 0.5;
+        }
+      }
+      // console.log('zoom power', initialZoom);
+      zoomElm.value = initialZoom;
+      zoomPower = initialZoom;
+      showZoomOutput();
+      applyZoom();
+      scrollStatus.functionCall = true;
+    }
+
+    window.clearInterval(scrollTimer);
+    scrollTimer = window.setTimeout(function() {
+      scrollStatus.wheeling = false;
+      scrollStatus.functionCall = false;
+    }, 10); //set this millisecond to your liking
+  }
+});
+
+// Hide Body overflow when mouse is over zoom area
+$('.zoom-area').hover(function() {
+    $("body").css("overflow","hidden");
+}, function() {
+     $("body").css("overflow","auto");
+});
+
+</script>
+
+</body>
+</html>
