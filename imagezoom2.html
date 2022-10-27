@@ -112,7 +112,9 @@
 
 <script>
 // use your mousewheel to zoom in 🔍
-
+window.addEventListener("contextmenu", function(e) {
+		e.preventDefault();
+	}, false);
 
 const image = document.getElementById('product-image-preview');
 const zoom = document.getElementById('product-image-preview-zoom');
