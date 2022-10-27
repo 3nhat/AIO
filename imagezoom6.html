@@ -91,7 +91,8 @@ zoomElm.addEventListener('input', function(e){
   showZoomOutput();
 });
 zoomElm.addEventListener('change', function(e){
-  // zoomPower = e.target.value;
+  // zoomPower = e.target.value;   
+      root.style.setProperty('--scale',zoomElm.value);
   showZoomOutput();
 });
 
@@ -123,9 +124,10 @@ showZoomOutput();
   }
   
   function updateMagnifier( x, y ) {
-  	zoom.style.top = (y - Iy>Zh) ? ( y - Zw/2) + 'px' : ( y + Zw/2) + 'px';
-    //zoom.style.top = ( y - Zw/2) + 'px';
-    zoom.style.left = ( x ) + 'px';
+  	//zoom.style.top = (y - Iy>Zh) ? ( y - Zh/2) + 'px' : ( y + Zh/2) + 'px';
+    zoom.style.top = ( y - Zw/2) + 'px';
+    zoom.style.left = ( x - Zw/2) + 'px';
+    //zoom.style.left = (x - Ix>Zw) ? ( x - Zw/2) + 'px' : ( x + Zw/2) + 'px';
     zoom.style.backgroundPosition = (( Ix - x ) * ratio + Zw / 2 ) + 'px ' + (( Iy - y ) * ratio + Zh / 2 ) + 'px';
   }
   
