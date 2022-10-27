@@ -52,6 +52,12 @@ img {
 
 
 <script>
+	
+	window.addEventListener("contextmenu", function(e) {
+		e.preventDefault();
+	}, false);
+	
+	
 	(function() {
   var zoom = document.getElementById( 'zoom' ),
       Zw = zoom.offsetWidth,
