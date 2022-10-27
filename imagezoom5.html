@@ -114,7 +114,7 @@ window.addEventListener("contextmenu", function(e) {
 	}, false);
 
 $('.zoom-area').bind('mousemove touchstart touchmove touchend', function(e) {
-  e.preventDefault();
+  //e.preventDefault();
   //if(e.type == 'touchstart') {
     
   //} else 
@@ -139,7 +139,9 @@ $('.zoom-area').bind('mousemove touchstart touchmove touchend', function(e) {
         applyZoom();
       }
     }
-  } else if(e.type == 'touchend') {
+  }
+  
+  if(e.type == 'touchend') {
     // some code
   }
 });
